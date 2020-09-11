@@ -1,0 +1,53 @@
+Brief Summary of the paper:
+
+1. The paper is trying to project the performance of future processors as the end of Moore's law is approaching and
+compare
+the gains in performance to historical trends that were observed due to Moore's law up to the point when the article was
+published. Authors also estimate the ratio of dark silicon on the chip due to end of Dennard scaling.
+
+    Key ideas of the paper are as follows:
+- Performance improvements from using multicores will not be as significant as expected in the last 5 technology
+generations (scaling down of CMOS transistors).
+- While transistors will be scaling down to 8 nm, due to end of Dennard scaling, the amount of dark silicon on chip will
+be increasing.
+- Conventional CPU and GPU multicore architectures will not be nearly enough to produce speedups comparable to what we
+would come to expect from Moore's law.
+
+Key insight is that in order to continue the historical rates of performance improvement, new architecture designs are
+needed.
+
+2. Strengths of the paper:
+    - Paper considers together the full architectural and microarchitectural design space from transistors all the way
+    to chip organization, number of cores and benchmark characteristics in its design, exploring a lot of factors
+    influencing performance and making sound conclusions.
+    - Paper considers different topologies for both CPU and GPU.
+    - Paper considers both optimistic and conservative estimates for technology improvements.
+    - Paper is well written and authors state all assumptions made in all stages of design clearly.
+    - Paper uses intuitive and established metrics and evaluation practices
+
+
+3. Paper's weaknesses:
+    - Paper is considering only one benchmark suite. There are other benchmark suites that could potentially produce
+    more optimistic results if they have more workloads that can be massively parallelized.
+    - Paper is not taking into account the evolution of software workloads. Future workloads are likely to be massively
+    parallel and that could possibly allow for better performance projections.
+    - Paper did not assume many architectural improvements in its projections - it took the systems available at the
+    time and scaled them. It is possible that between then and now there were architectural improvements that increased
+    performance without making radical changes.
+    - Paper did not take into account the potential improvements in operating system layer that could positively impact
+    performance.
+
+4. I do not believe I could do much better. One opportunity I see to do better would be to analyze new types of real
+workloads than appreared since the paper came out. Data processing and ML workloads are massively parallel and could
+potentially offset some of the paper's conclusions. However, at the time of paper publication, I do not think that
+anyone would be able to do a much better job.
+
+5. I learned about Pareto frontier and how it can be useful in computer architecture research because it can provide a
+good way to think about tradeoffs between different elements of the system as a whole.
+    I liked how authors deconstructed the problem into layers each corresponding to a layer in system design, created
+projections of performance for each layer and then combined the layers and re-analyzed the whole system to obtain the
+scaled performance.
+    I also liked how authors developed new corollaries to Amdahl's Law (Table 3) and how they extended well established
+performance formulas (formulas 1-4 on pages 369-370).
+
+
