@@ -14,6 +14,26 @@ Research directions I am noticing:
 3. Architectures for different environments (mobile, datacenters, cloud).
 4. Attempts to generalize accelerators for many applications to ease programmability and make it universal.
 5. Prevent obsoletion of specific accelerators.
+6. Attempts to provide acceleration through improving Memory bandwidth.
+7. Co-design with existing systems. (Anand's work)
+
+
+
+
+Accelerated Analytics on IOT devices !!!!!
+
+IOT devices, sensors - run analytics on that
+
+How to deal with big data that 5G will bring to us. Can I bring something useful so that ccertain classes of operations
+can run on interesting hardware
+
+What kind of operators data analytics run? look at computational demands.
+
+Talk to anand
+
+Look for problems in the systems fields: USDI, ASPLOS, USENIX ATC, EUROSYS.
+
+Look at prior work in this area.
 
 
 ------------------------------------------------------------------------------------------------------------------------
@@ -28,6 +48,42 @@ XML processing
 regex matching
 database ops
 video decoding
+In-memory accelerators/near-data accelerators
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+How are accelerators created:
+
+High level synthesis:
+Description:
+Algo is described at a high level in C -> transcompiled into Hardware Description Language ->
+compiled into Hardware using a Logic Synthesis tool.
+Pros:
+Ease of synthesis
+Cons:
+Reduced performance compared to domain specific accelertors
+
+Domain Specific:
+Description:
+Accelerator is synthesised for a specific algorithm and type of workload.
+Pros:
+High performance
+High energy savings
+Cons:
+Specific Programming Interface
+High rate of obsoletion as workloads evolve and new algorithms develop
+
+General-purpose:
+Description:
+GPUs, DSP (Digital Signal Processors), SIMD extentions.
+Pros:
+Unified Programming interface
+Long term stability
+Cons:
+Not as specialized
 
 
 ------------------------------------------------------------------------------------------------------------------------

@@ -14,14 +14,14 @@ Aim high to have impact by the time you report/publish your results.
 Your insight, not performance numbers or design, is what transfers into the future and creates impact.
 
 Idea: have markers in memory that represent bounds for data structures. If an element of that data structure is
-operated on, we bring the whole datastructure into the cache. Make memory operations semantic.
+operated on, we bring the whole data structure into the cache. Make memory operations semantic.
 
 Review of Dark Silicon:
 
-Unlimited power and fixed parallelist - 10% speedup
+Unlimited power and fixed parallelism - 10% speedup
 100% parallelism and limited power - 15% speedup
 
 This means that the fact that we have a power budget does not constrain us (because even with unlimited power budget we
 would still get 10% speedup) in terms of dark silicon. It is the fact that we have to turn on many cores to process
-many parellel threads that is constraining us.
+many parallel threads that is constraining us.
 
