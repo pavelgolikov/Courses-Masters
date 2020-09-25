@@ -1,0 +1,125 @@
+Project Accelerated Analytics on IOT devices.
+
+With massive expansion of IOT devices there will be a lot of data moving around. Correspondingly, there will be the need
+to analyze and process all of this data.
+
+Aim of this project is as follows:
+
+1. Analyze the operations and data movement in common IOT devices.
+2. Analyze the computation demands of those operations.
+3. Potentially propose interesting hardware to accelerate data analytics.
+
+What Are IoT Devices?
+An IoT device is a piece of hardware with a sensor that transmits data from one place to another over the Internet.
+Types of IoT devices include wireless sensors, software, actuators, and computer devices. They can be imbedded into
+mobile devices, industrial equipment, environmental sensors, medical devices, and more. Connected IoT devices, which
+convey usage and other data, can potentially provide insights that lead companies to cost reductions, efficiency gains,
+and new business opportunities.
+
+
+
+General questions:
+
+At which point do we analyze things? At the device? At the cloud?
+
+Where would I find the following info:
+
+What kind of data IOT devices collect?
+
+Current Stage:
+
+Ways to classify:
+Classify by physics -> data types -> operations
+Classify by use -> data types -> operations
+Classify by target -> are they tracking you or the environment?
+Classify by type -> physical data (pressure, temperature etc...) vs readily analyzable data (video, voice etc...)
+
+
+
+In terms of physics, what kind of data can IoT devices collect:
+
+Sound
+- Speech detection
+- Music
+
+Video
+- Security systems
+- Doorbells
+
+Motion Sensing
+- Security systems
+
+Vibration
+- Various sensors
+- Heartbeat
+- Seismic sensors
+
+Temperature
+- Human
+- Outside
+- Safety systems
+
+Location
+- Tracking - very popular, especially for industrial IoT devices
+- Reccomendation systems
+
+Tilt Detection
+- Quality control
+- Safety
+
+Pressure (by extention: Altitude, Depth, Flow, Leak)
+- Safety
+- Industrial - cargo tracking
+
+Electrical
+- Current
+- Power - very popular for energy savings
+
+Communication
+- Antennas
+
+Chemical
+- Safety and security
+- Air quality monitoring
+- CO2 detection
+- Dangerous chemical detection - Industrial IoT devices
+
+
+Most data is collected over time for tracking/analysis purposes.
+Any combination of the above types of data can and are collected.
+
+
+
+
+
+What kind of data related operations are performed on IOT devices?
+How is data stored on IOT devices?
+
+Mobile and systems.
+
+TinyML small devices - course Harward and MIT.
+Vijay
+
+What is industry doing with IOT devices?
+
+
+Anand meeting notes:
+
+At first, targeting hospital, now 5G, IOT devices.
+
+Classify devices by the type of data they collect. Classify data. and go from there.
+
+Video quering - one of the areas where people explore.
+
+Google talks about problems people face with big data.
+
+
+Current references/Resources:
+
+
+
+
+
+Existing hardware targeting IOT:
+
+GAP8 (https://groupgets.com/campaigns/576-gapuino-combo-kit)
