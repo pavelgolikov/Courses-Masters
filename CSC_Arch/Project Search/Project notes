@@ -16,8 +16,6 @@ mobile devices, industrial equipment, environmental sensors, medical devices, an
 convey usage and other data, can potentially provide insights that lead companies to cost reductions, efficiency gains,
 and new business opportunities.
 
-
-
 General questions:
 
 At which point do we analyze things? At the device? At the cloud?
@@ -30,7 +28,7 @@ Current Stage:
 
 Ways to classify:
 Classify by physics -> data types -> operations
-Classify by use -> data types -> operations
+Classify by use (Medical, Production, Fitness, Safety, etc...) -> data types -> operations
 Classify by target -> are they tracking you or the environment?
 Classify by type -> physical data (pressure, temperature etc...) vs readily analyzable data (video, voice etc...)
 
@@ -45,12 +43,24 @@ Sound
 Video
 - Security systems
 - Doorbells
+- Traffic analysis
+
+Images
+- Medical
+- Scientific
+- Safety and Security
+- Traffic analysis
+
+Light Sensors
+- Sleep tracking
+
+Ultra-Sound
+- Underwater search (fishing)
 
 Motion Sensing
 - Security systems
 
 Vibration
-- Various sensors
 - Heartbeat
 - Seismic sensors
 
@@ -73,10 +83,15 @@ Pressure (by extention: Altitude, Depth, Flow, Leak)
 
 Electrical
 - Current
-- Power - very popular for energy savings
+- Power - very popular for energy savings - Power hungry home equipment
+- Medical (ECG)
+
+Electronic
+- RFID
 
 Communication
 - Antennas
+- Frequencies
 
 Chemical
 - Safety and security
@@ -86,10 +101,23 @@ Chemical
 
 
 Most data is collected over time for tracking/analysis purposes.
+
+How long is the cycle turnaround for data?
+
+Seconds? Hours? Days? Weeks?
+
+The longer the turnaround, the more opportunity for architectural injections.
+
 Any combination of the above types of data can and are collected.
 
 
+DATA patterns could dictate the computational requirements.
 
+Potential idea:
+
+Data center (dedicated or extension of current ones) that would offer data analytics for IoT devices to keep hardware
+utilization busy. How to justify? Current data centers focus complicated compute and IoT devices data might require
+large parallelism but simple cores or accelerators.
 
 
 What kind of data related operations are performed on IOT devices?
@@ -123,3 +151,105 @@ Current references/Resources:
 Existing hardware targeting IOT:
 
 GAP8 (https://groupgets.com/campaigns/576-gapuino-combo-kit)
+
+
+IDEAS:
+
+Could argue that data from 5G will overwhelm the datacenter compute and so the new accelerators will be needed for IoT
+data. Why can't usual ones be used? General purpose accelerators will do the job just fine.
+
+
+Need to argue that datacenters are too cumbersome and are increasing the collection-analysis-reporting cycle latency.
+Much compute can be done locally.
+
+Analysis on IoT devices? What kind of data can be analyzed on IoT device? What data can be analyzed at the device? at
+user-machine level? at the datacenter? Analyze closer to the consumer? Hierarchical approach to analysis?
+
+Different data analyzed in different places? Use client machine to analyze the data in the background?
+
+Medium level analysis nodes can benefit from low power accelerators, which eleminate the need to send the data to the
+cloud?
+
+Classify IoT devices by application and compute requirements for data analysis, for example: municipality analyzing
+traffic from IoT devices would be a medium size node, where a medium size custom built accelerator can be placed;
+Home where there are a lot of simpler devices with small power consumption and with data with lower computational
+requirements can benefit from placing a lot of compute on the personal computer or even a phone.
+
+
+Gennady Meeting September 30 2020:
+
+take main sources of data and how much compute would be needed to handle it.
+
+estimate how much you can process.
+
+How fast to run a simple query on that kind of data.
+
+We are coming to territory that is infeasinble
+
+power is there, place compute on the IoT devices.
+
+How massive is the amount of data coming in and how much compute is needed to handle it?
+
+if putting sensors near 5G why not put it near sensors as well.
+
+Figure out magnitude of categories and estimate hwo much data they can generate in an minute/hour?
+
+Frequency of how often collected. Make a range for each category.
+
+look at the manuals of the devices and with what frequencies.
+
+pick devices that generate data first.
+
+
+Microsoft project with farms where they could not send live videos.
+
+categorize by compute complexity and types of data generated.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

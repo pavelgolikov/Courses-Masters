@@ -1,0 +1,71 @@
+BDI paper review by Pavel Golikov (Student Number 994973230)
+
+
+1. Brief Summary of the paper:
+
+Authors propose a practical and relatively lightweight compression algorithm on-chip data caches. The algorithm works at
+cache line granularity. The main idea is that very often the entire cache line be represented as a base number and an
+array of differences. To obtain the value of a word at index i, one needs to add the base number with the difference
+at index i from the difference array. The key observation is that storing the base and the array of differences takes
+less space than storing the line as words themselves. Authors develop this idea further and use two bases instead of one
+to cover more applications. Even though the proposed technique is rather lightweight, it still requires some latency to
+decompress the data. Because getting data from L1 cache is on the critical path (and increasing latency there will
+decrease performance) authors propose to use the technique to compress L2 and L3 caches, and leave L1 uncompressed.
+Authors demonstrate that their technique improves performance by 8.1% for single core and 9.5% /11.2% for two/four
+cores. For many applications, BDI effectively increases the cache capacity by 1.53X.
+
+
+Key ideas of the paper are as follows:
+
+- Cache line can be represented as a base number and an array of differences, which constitutes the compression
+mechanism. To decompress the cache line compressed with this method, one needs to add the difference to base for each
+difference in the differences array, which can be done in parallel, meaning that the decompression can be done
+comparably quickly.
+
+- Storing the cache line as a base number and a difference array takes less space than storing the line normally because
+the magnitude of the differences is normally significantly smaller than the magnitude of the words themselves.
+
+- Cache compression can significantly decrease the bandwidth of traffic between L2 and L3 caches if both L2 and L3 are
+compressed.
+
+Key insight is that expressing the array of words as a base number and an array of differences takes less space than
+storing the words themselves because of the differences can often be stored in the smaller integer or float type.
+
+
+2. Strengths of the paper:
+
+- The proposed technique achieves better ratio between compression ratio and decompression latency compared to other
+state of the art works.
+
+- The ideas of applying base-delta compression to CPU caches is a novel one, but at the same time simple and practical.
+
+- The side effect of compressing both L2 and L3 caches is the significant reduction of bandwidth between L2 and
+L3 caches.
+
+
+3. Paper's weaknesses:
+
+- Only L2 and beyond levels of cache is considered for compression, but it doesn't suffer the most from capacity misses,
+L1 suffers the most. Can other schemes compress L1?
+
+- Can not compress any line
+
+- Section 5.2 - Because BDI looks at granularity of lines, it is possible that on a miss or writeback from L1 multiple
+lines will be evicted from the cache in order to accomodate the potentially uncompressed new line.
+
+- Fragmentation might be a problem - assumption about the shift to avoid segmentation is a weakness. What is meant by
+inefficient?
+
+- With increasing cache sizes due to improving transistor technology, effectiveness of BDI might be decreasing.
+
+
+
+4. Could I do better:
+
+I would test with more cores
+
+
+5. What I liked and disliked about the paper and why
+
+
+

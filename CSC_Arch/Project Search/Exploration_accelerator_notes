@@ -1,0 +1,254 @@
+Top Architecture Conferences:
+ASPLOS
+ISCA
+MICRO
+HPCA
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+Research directions I am noticing:
+1. Accelerator - Host interactions (cache coherence, security).
+2. Proposing new ideas for accelerator implementation.
+3. Architectures for different environments (mobile, datacenters, cloud).
+4. Attempts to generalize accelerators for many applications to ease programmability and make it universal.
+5. Prevent obsoletion of specific accelerators.
+6. Attempts to provide acceleration through improving Memory bandwidth.
+7. Co-design with existing systems. (Anand's work)
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+Accelerated applications and accelerators used:
+ML - GPU, TPU, FPGA
+Scientific computing - GPU, FPGA
+Graphics rendering - GPU
+Cryptography
+XML processing
+regex matching
+database ops
+video decoding
+In-memory accelerators/near-data accelerators
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+How are accelerators created:
+
+High level synthesis:
+Description:
+Algo is described at a high level in C -> transcompiled into Hardware Description Language ->
+compiled into Hardware using a Logic Synthesis tool.
+Pros:
+Ease of synthesis
+Cons:
+Reduced performance compared to domain specific accelertors
+
+Domain Specific:
+Description:
+Accelerator is synthesised for a specific algorithm and type of workload.
+Pros:
+High performance
+High energy savings
+Cons:
+Specific Programming Interface
+High rate of obsoletion as workloads evolve and new algorithms develop
+
+General-purpose:
+Description:
+GPUs, DSP (Digital Signal Processors), SIMD extentions.
+Pros:
+Unified Programming interface
+Long term stability
+Cons:
+Not as specialized
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+Accelerator Level Parallelism Related Papers.
+
+- Accelerator Level Parallelism - blog post.
+
+Other potential problems motivated by this work:
+
+1. Classify accelerators in modern systems and create metric for how important those accelerators are in the system as a
+whole.
+2. Create framework to make recommendations for accelerator design based on workloads?
+3. Propose very specialized accelerator that accepts inputs on HW level and produces output. Performs a very specialized
+algorithm? - avoid overhead of handshaking and simplify data communication. Weakness - no flexibility at all.
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+- Accelerator Wall
+
+Description:
+Paper discusses various accelerators and creates methodology to separate the speedup gained from CMOS improvement vs the
+speedup gained from specialization of the chip (CSR). Using this methodology authors project future improvements that
+can be extracted from accelerators in several popular fields. Authors discuss the limits of accelerator specialization
+which they call accelerator wall.
+
+Relevant related works to read:
+8
+9
+77
+12
+79!
+80 -> next
+
+Other potential problems motivated by this paper:
+
+1. Benchmarks for new specialized architectures.
+2. Propose architectures that improve CSR further?
+3. Look into methods to reduce dark silicon? Propse architectures to reduce dark silicon?
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+- Opportunities and Challenges for Next Generation Computing
+
+Description:
+Article discusses challenges for current paradigms.
+
+Other potential problems motivated by this paper:
+
+1. A lot of information movement is happening in modern computers. Look for ways to eliminate that movement. Maybe look
+at ways to eliminate the excessive movement of data from and to accelerators?
+2. Look for where handshake is happening in current computers and look for ways to combine the two engines into a single
+machine to eliminate the overheads of handshake?
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+- Crossing Guard: Mediating Host-Accelerator Coherence Interactions
+
+Problem being solved:
+Future accelerators might benefit from sharing the address space with host and that accelerator cache and host cache
+will need to maintain coherence across the shared address space.
+
+Proposed solution:
+Paper proposes an interface for the interaction between Host and Accelerator coherence protocols. Authors propose a safe
+cache coherence protocol that would work even with buggy accelerators. Paper is somewhat speculative in that it
+speculates about future accelerators and their potential design.
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+- Scaling Datacenter Accelerators With Compute-Reuse Architectures
+
+Problem being solved:
+The fast approaching end of Moore's law and Dennard scaling.
+
+Proposed solution:
+Reuse already computed results through memoization, i.e. use memory that is still scaling instead of CMOS that is going
+to stop scaling soon to store the already computed results of the frequently requested queries so as to not recompute
+them - a sort of cache for a database.
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+Ideas:
+1. Use FPGA as a generic accelerator in a machine and while the data is loading, configure it to have optimal
+structure.
+2. Propose FPGA/GPU hybrid. Certain number of cores are there to fit most workloads (floating point/int) and the rest
+are FPGA type arrays of gates to fit specific workloads. Maybe make it modular to be able to assemble an accelerator
+that fits your needs. Also could make it so that it can turn off unneeded compute resources and only use what is
+necessary after a profile run - that way it will save power.
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+- Border Control: sandboxing accelerators
+
+Problem being solved:
+If an accelerators shares memory with the host, there are security issues (unchecked, accelerators
+could make incorrect memory accesses, causing information leaks, data corruption, or crashes not only for processes
+running on the accelerator, but for the rest of the system as well). Hence there is need for "border control" between
+accelerators and the rest of the system.
+
+Proposed solution:
+Authors propose a system that implements such control.
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+- Pushing the limits of accelerator efficiency while retaining programmability
+
+Problem being solved:
+High overall area footprint of DSA (Domain Specific Architecture - really specialized
+accelerator) as well as it being prone to obsoletion (for example when a new algorithm is discovered).
+
+Proposed solution:
+LSSD - an architecture composed of many tiny cores with configurable architecture, scratchpad and DMA (Direct Memory
+Access). Authors argue that they can obtain comparable acceleration with this more general architecture without going
+into full specialization. LSSD will also be programmable in normal languages, which will allow it to be more adaptable
+and scalable, and easier programmable than DSA accelerators.
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+- Genesis: A Hardware Acceleration Framework for Genomic Data Analysis
+
+Problem being solved:
+High obsoletion rate of genomics algorithms.
+
+Proposed solution:
+Framework where users represent genomic data manipulation operations with standardized SQL and user-supplied custom
+operations. Based on that, the framework computes configurable hardware modules that accelerate common SQL operations as
+well as genomic-data-specific operations. Users can then combine modules to accelerate a specific query.
+
+Strengths:
+Very good motivation - obsoletion of genomics algorithms.
+
+Weaknesses:
+No comparison to state of the art accelerators - only to multi-core CPU.
+Why do we not just use a generator to accelerate SQL operations in general? Why use this complicated approach?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

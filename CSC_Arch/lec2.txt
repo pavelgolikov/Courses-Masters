@@ -1,0 +1,12 @@
+
+Why parallelism?
+
+Throughput
+Hardware utilization (one app is never going to use up all resources -> put more things on device to make the units busy
+Power consumption
+
+When trading parameters, not all parameters can be linearly related -> review physics
+
+Why not increase instruction window? Data dependencies are scaling quadratically.
+
+

@@ -1,0 +1,43 @@
+What is the problem?
+
+Increase in IoT devices makes VERY large amounts of data available for analytics. Large hardware infrastructures are
+required to process the ever increasing amount of data made available by those IoT devices. Currently there has not been
+a comprehensive study of architectures customized for data analytics from IoT devices. We propose such a study which
+would facilitate the development of such architectures through classification and analysis of computational
+requirements of data analytics workloads. We argue that the amount of data is overwhelmingly large and that delivering
+all that data to the datacenter and processing it all there and then delivering the results back to consumer is no
+longer a scalable model. We propose to offload some
+
+Why is it hard?
+
+Currently the data is analyzed separetely by each vendor offering IoT devices and services. Because of that, it is hard
+to identify common computational patterns present in data analytics from IoT devices. In addition IoT devices collect a
+very wide range of data and have a wide range of computational requirements. IoT devices collect vast amount of
+different data. Even a single device collects many different types of data in different formats, whose analysis has
+different computational requirements.
+
+How is it solved today?
+Today to our best knowledge there has not been such a study of IoT devices and each vendor creates an infrastructure
+(including sensors, communication infrastructure, data centers, analytics software, and user-interaction applications)
+separately and for their own system. Currently there is a wide range of architectures being proposed in academia that
+are targeting data analysis. However, there is little literature targeting IoT devices and their specific computational
+requirements.
+
+What is the new technical idea?
+The idea is to use the computational requirements of analytics software for IoT devices to extract architectural
+insights and facilitate the development of novel accelerators for analytics on IoT devices.
+
+Why can we succeed now?
+The lack of research in this area has not been due to technical constraints but rather due to the fact that
+proliferation of IoT devices has not reached current levels. Now, due to increase in proliferation of IoT devices,
+research into this design space has become more relevant. The impact of this research now, as development of IoT devices
+is reaching maturity, is more profound.
+
+What is the impact if successful?
+Our research will facilitate the development of novel architectures, which would allow a continued development and
+proliferation of IoT devices. This has potential to reduce the price and improve performance of data analytics from IoT
+devices.
+
+
+Brief Timelnine:
+

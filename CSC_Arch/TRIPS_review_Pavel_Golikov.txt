@@ -1,0 +1,84 @@
+Brief Summary of the paper:
+
+1. Authors argue that although general-purpose processors are capable of executing any type of workload, they
+are not well optimized to execute specific types of workload and thus may suffer from either under-utilization due to
+having too many resources (single threaded core on a multiprocessor) or from slowdown (multi threaded code on a
+single-core processor).
+    To improve performance and hardware utilization, authors propose a polymorphous architecture - architecture that can
+reconfigure itself to match the type of workload that it is going to execute. Authors propose 3 types of morphs which
+TRIPS can configure itself into, characterized by the type of workload: D-morph (desktop morph - targeting
+instruction-level parallelism), T-morph (targeting thread-level parallelism), and  S-morph  (streaming morph - targeting
+data-level parallelism).
+
+
+Key ideas of the paper are as follows:
+- It is possible to build hardware that can adapt to the type of workload to be executed on it, instead of having a
+certain workload and looking for specific hardware that will execute that workload - data drives the architecture.
+- Restructuring the memory system and bringing it closer around the compute cores improves memory bandwidth and with it
+the performance.
+- Although polymorphous reconfigurable architecture will not outperform custom hardware, it can nevertheless provide
+high performance and improve hardware utilization as the chip will be used much more compared to specialized components.
+
+Key insight is that high performance can be obtained for various types of workloads with flexible polymorphous
+architecture on a single reconfigurable machine.
+
+2. Strengths of the paper:
+
+- Paper describes a novel and highly flexible reconfigurable architecture.
+
+- Paper introduces interesting mechanisms in S-morph to relieve pressure on instruction cache (mapping reuse) and on
+memory/data cache (revitalization signal) that allows reservation stations to keep the instruction and constant operands
+without having to reload them. (Section 5.1).
+
+- Paper conducts a thorough sensetivity study of performance for each core dimension, benchmark, and type of morph,
+indicating resulting IPC and other useful metrics. These conclusions can be useful not only in the context of this paper
+but in a wider context and can serve as a guide for future processor designs.
+
+- Because of the abundance of reservation stations and execution context, T-morph of TRIPS is able to statically
+partition the resources, thus eliminating some replicated SMT structures that are necessary in a general purpose
+processor yet achieving the same effect. (Section 4 intro).
+
+
+3. Paper's weaknesses:
+
+- Modern workloads can be heterogeneous and normally contain a serial portions and a parallel portions in various
+ratios. Executing such workloads, TRIPS is likely to suffer from the same problems (low hardware utilizations for some
+portions and increased latency for others) as authors are describing for general purpose architectures. Unless of course
+TRIPS will reconfigure itself for different portions of the code. However, I believe that will put a lot of pressure on
+compiler to identify the parallel sections or on the programmer to mark them and it is also likely that on the fly
+reconfiguration will introduce prohibitively large overhead.
+
+- Just like the hardware, future workloads are also likely to become more specialized, for example, with improving
+quality of video processing, media applications are likely to become more parallel as the number of pixels grows. As
+such, to maintain the performance comparable to specialized architectures, TRIPS will have to introduce increasing
+number of cores. As the number of cores grows to keep S-morph performance comparable to specialized architectures,
+D-morph will suffer from resource under-utilization as there will not be enough instruction-level parallelism. As
+workloads become more specialized, the different morphs of configurable architecture of TRIPS are likely to become
+stretched further and further apart and performance compared to specialized chips is likely to decrease.
+
+- Section 3.2 describes the A-frames that will be filled with speculatively mapped hyperblocks. Figure 4 describes
+performance of D-morph as the number of speculative A-frames grows. We can see that for most benchmarks, there are
+diminishing returns once the number reaches 16. This implies that with large number of frames, there can be a lot of
+speculative execution that does not translate to increased performance. Thus, D-morph could suffer from wasted cycles if
+the number of frames is large. However, it is that large number of frames that is used in S-morph to unroll the loops
+for highly parallel applications, thus improving S-morph performance.
+
+
+4. Could I do better:
+
+I do not believe I could do better. I think authors did a very good job describing a flexible and reconfigurable
+architecture. Authors were able to combine multiple architectures on a single chip and approach performance of
+specialized chips. Ultimately, I think that this direction is not the optimal one, because of the weaknesses I stated
+above. I believe that a better approach to increasing hardware utilization would be to virtualize the hardware and keep
+it busy with multiple workloads at once, which will be able to saturate the execution units and memory bandwidth.
+
+
+5. I really liked the author's idea of combining multiple architectures into one and creating a reconfigurable
+processor. I also liked how detailed the study is because authors' conclusions can benefit other researchers as they
+have explored a lot of design points and evaluated them on a number of benchmarks. I liked that altough the idea of
+reconfigurable architecture sounds very complicated, the authors were able to achive the goal with a relatively simple
+design (even eliminating some components that are present in general-purpose architectures). This simple design made it
+very understandable. I also like how authors partitioned memory and moved it closer to the compute units, which allowed
+for increased memory bandwidth.
+
+

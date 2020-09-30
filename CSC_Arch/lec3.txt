@@ -1,0 +1,11 @@
+Know your client. If you want to contribute to state of the art, you need to be in both camps: industry and academia.
+Example: Wilkes (discussed Temporal locality) and IBM (discussed spatial locality becaue it influcenced them more).
+
+is 3D stacking likely to improve anything or is it decoding itself?
+does it access many layers at hte same time to avoid adding the latency?
+
+The more cores you have, the more contexts -> the more associativity you will need -> need layers of cache shared by
+more cores to have higher associativity.
+
+
+state of the art replacement policy: RRIP - what Intel is using.
