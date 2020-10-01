@@ -45,27 +45,41 @@ L3 caches.
 
 3. Paper's weaknesses:
 
-- Only L2 and beyond levels of cache is considered for compression, but it doesn't suffer the most from capacity misses,
-L1 suffers the most. Can other schemes compress L1?
+- Authors are stating that if the compression technique is applied to L1 cache, then decompression latency is
+potentially large enough to negatively influence the performance in the presense of applications that won't benefit
+from cache compression. Because of that, authors only consider caches L2 and higher as candidates for compression.
+However, it is the L1 cache that suffers the most from conflict misses because of it's small size.
 
-- Can not compress any line
+- On a L2 cache miss or a writeback from L1 to L2, it is possible that in order to insert one cache line into L2,
+multiple cache lines will need to be evicted. Evicting two lines to accomodate one could increase the latency if the
+evicted cache lines will have to be accessed again as those lines will have to be taken from next level cache of memory
+with higher latency.
 
-- Section 5.2 - Because BDI looks at granularity of lines, it is possible that on a miss or writeback from L1 multiple
-lines will be evicted from the cache in order to accomodate the potentially uncompressed new line.
-
-- Fragmentation might be a problem - assumption about the shift to avoid segmentation is a weakness. What is meant by
-inefficient?
-
-- With increasing cache sizes due to improving transistor technology, effectiveness of BDI might be decreasing.
-
-
-
-4. Could I do better:
-
-I would test with more cores
+- Historical trends for L2 and L3 caches suggest that the sizes for the caches are increasing, especially for high
+performance computers. If these trends will continue, then the impact of the techniques that authors propose will be
+diminished in future because, as authors state, the effectiveness of BDI decreases with cache size since the working set
+of more applications can now fit inside the cache.
 
 
-5. What I liked and disliked about the paper and why
+4. Suggestions/Feedback:
 
+- Authors evaluate their techniques on a single core machine as well as on a multi-core machine with 2 and 4 cores. My
+question/suggestion to authors would be to evaluate the proposed techniques on a machine with many more cores. Modern
+machines have up to 16 cores with SMT multithreading and I would suggest evaluating on those machines. Those machines
+usually have larger cache sizes and it would be interesting to see how BDI would perform in the presense of large number
+of cores and with large number of applications run concurrently on a multicore system (from the paper I understood that
+authors evaluated multicore workloads and pairs of workloads, but did not evaluate their technique on multicore system
+with more than 2 workloads running together).
 
+- Can the proposed technique be used to compress/decompress more than 1 cache line? This has potential to increase the
+power overhead, but perhaps this could reduce the tag and other metadata overhead for some cache lines and could be
+useful in high-performance server-level machines.
 
+- Have authors considered compressing/decompressing objects instead of lines? Applications operate on objects and not
+cache lines and as such, it seems to be more natural to try compress entire objects instead of cache lines.
+
+- I liked the thorough comparison with other state of the art techniques as well as explanations of why the results were
+as they were. This allowed me to better understand the pros and cons of all techniques and what are the advantages of
+BDI over other works.
+
+- I liked how easy the paper was to read and understand.

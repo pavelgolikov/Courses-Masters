@@ -4,28 +4,61 @@ Increase in IoT devices makes VERY large amounts of data available for analytics
 required to process the ever increasing amount of data made available by those IoT devices. Currently there has not been
 a comprehensive study of architectures customized for data analytics from IoT devices. We propose such a study which
 would facilitate the development of such architectures through classification and analysis of computational
-requirements of data analytics workloads. We argue that the amount of data is overwhelmingly large and that delivering
-all that data to the datacenter and processing it all there and then delivering the results back to consumer is no
-longer a scalable model. We propose to offload some
+requirements of data analytics workloads originating from IoT devices.
+
+We argue that the amount of data is overwhelmingly large and that delivering all that data to the datacenter and
+processing it all there and then delivering the results back to consumer is no longer a scalable model. We propose to
+offload some of the compute from the datacenter to local devices - be it personal computer or dedicated accelerator
+integrated with IoT device at the edge.
+
+The amount of data that IoT devices generate can overwhelm not only the analysis nodes (datacenters), but also
+communication infrastructure - for example, an IoT device deployed in the remote areas is unlikely to have a good
+internet connection so uploading massive amounts of data becomes impossible. Storage of the data requires large amounts
+of storage, which is also not available to the normally small IoT device. We propose that the device analyzes data
+itself and then uploads the results to the datacenter. This has potential to drammatically decrease the upload
+bandwidth, thus reducing the stress on the communication infrastructure.
+
 
 Why is it hard?
 
-Currently the data is analyzed separetely by each vendor offering IoT devices and services. Because of that, it is hard
-to identify common computational patterns present in data analytics from IoT devices. In addition IoT devices collect a
-very wide range of data and have a wide range of computational requirements. IoT devices collect vast amount of
-different data. Even a single device collects many different types of data in different formats, whose analysis has
-different computational requirements.
+IoT devices collect a very wide range of data. Even a single device may collect many different types of data in
+different formats, whose analysis has different computational requirements. Thus in order to develop a power efficient
+system for data analytics on IoT devices one would require a range of accelerators optimized for different data patterns
+and compute requirements that originate from data collected by a wide range of existing and future IoT devices.
+    The problem is that most existing accelerators (GPU, TPU) are designed to help with computation of massively
+parallel workloads under limitless power supply in datacenters and are thus power-hungry (modern NVIDIA GPUs
+require at least 500 PSU Wattage with higher end models approaching 1000 PSU Wattage). This prohibits their use in IoT
+devices, which are normally small and are operating under strict power constraints (as they are usually supplied by a
+battery).
+
 
 How is it solved today?
-Today to our best knowledge there has not been such a study of IoT devices and each vendor creates an infrastructure
-(including sensors, communication infrastructure, data centers, analytics software, and user-interaction applications)
-separately and for their own system. Currently there is a wide range of architectures being proposed in academia that
-are targeting data analysis. However, there is little literature targeting IoT devices and their specific computational
-requirements.
+
+Today to our best knowledge there has not been such a study of IoT devices. Each vendor develops or purchases various
+parts of the full infrastructure which consists of sensors, commmunication devices, data centers, analytics software,
+and user-interaction applications) separately and for their own products. Currently there is a wide range
+of architectures being proposed in academia that are targeting data analysis. However, there is to our best knowledge no
+literature targeting IoT devices and their specific computational requirements.
+
 
 What is the new technical idea?
+
 The idea is to use the computational requirements of analytics software for IoT devices to extract architectural
 insights and facilitate the development of novel accelerators for analytics on IoT devices.
+
+The accepted IoT architecture model consists of sensors obtaining data, then sending the data through communication
+devices to the intermediate nodes of directly to datacenters, where it is analyzed by analytics software. After the
+analysis the user-interaction applications report the results to the clients. Why is it done this way? Because it is
+convenient and allows for ease of data access.
+    We claim that this model is not scalable in view of how much data will be available with wider proliferation of IoT
+devices. The number of IoT devices is projected to increase drammatically
+(https://www.statista.com/statistics/471264/iot-number-of-connected-devices-worldwide/  this is just one projection -
+many others predict similar numbers) and as such, the amount of data these IoT devices will generate will quickly become
+overwhelming for both the communication infrastructure and the analysis node (datacenter). We propose a new class of
+accelerators that would enable power efficient data anlysis at the IoT device and would be customized to the compute
+requirements of the device and the data that this device generates. This will eliminate the need to transfer
+large amounts of data to the cloud and thus will present the community with a much more scalable IoT model.
+
 
 Why can we succeed now?
 The lack of research in this area has not been due to technical constraints but rather due to the fact that
