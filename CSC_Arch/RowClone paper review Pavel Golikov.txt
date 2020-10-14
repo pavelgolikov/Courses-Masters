@@ -1,0 +1,90 @@
+RowClone paper review by Pavel Golikov (Student Number 994973230)
+
+1. Brief Summary of the paper:
+
+Authors propose a modification of DRAM that would allow for a much faster and more energy efficient transfer of bulk
+data and 0-initialization. The mechanism that authors propose performs the above-mentioned operations completely within
+DRAM and does not require the data to travel over the memory channel to the processor (like it does today). Authors
+propose 2 mechanisms to achieve fast data copy and initialization: Fast Parallel Mode (FPM), which requires that both
+rows be in the same DRAM subarray and the operation must span and entire row, in this mode the data is copied inside the
+subarray; Pipelined Serial Mode (PSM), which can copy the data from one DRAM bank to another and from one subarray to
+another subarray within the same bank. Authors demonstrate that they achieve the reduction in latency/energy of a 4KB
+copy by 11.6x/74.4x for FPM(inside subarray copy) and 1.9x/3.2x for PSM (inter-bank copy). The above speedup and energy
+saving can be achieved with only 0.01% increase in DRAM chip area.
+
+
+Key ideas of the paper are as follows:
+
+- Many operations (such as fork, initialization of large data structures, secure deallocation checkpointing, page
+migration) in machines perform copy and bulk initialization operations
+
+- Copy operations in modern machines are currently performed through CPU, which is inefficient because data movement
+happends over the memory channel to CPU and then back to memory. This data movement is not necessary if a copy or
+bulk initialization operation is being performed.
+
+- Modern DRAM chips have internal organization that allows, with a slight modification, to perform bulk copy and
+initialization operations completely within DRAM thus saving energy and reducing latency of such operations.
+
+Key insight is that DRAM already transfers entire rows to row buffers within the subarrays. This already existing
+mechanism can be used to efficiently and quickly copy data between rows.
+
+
+2. Strengths of the paper:
+
+- The results for selected applications are very strong. The proposed mechanism is able to achieve a large improvement
+even in PSM mode (copy between banks). In FPM mode (copy between rows of the same subarray) the improvement is very
+impressive.
+
+- Proposed mechanism has substantial use cases. In Section 5.2 Authors list the applications that can benefit
+from the proposed mechanism, which include Fork system call, large data structure initialization, secure deallocation,
+checkpointing, Virtual machine cloning/deduplication, CPU/GPU communication. I consider the list of applications
+substantial.
+
+- Proposed mechanism has a potential important future use case. A lot of researchers in academia and industry are
+proposing accelerator designs to offset the end of Moore's law. Many such accelerators share memory with the processor.
+As such, RowClone has many potential future use cases in future accelerator designs - data copy from cpu memory space
+to accelerator's memory space.
+
+
+3. Paper's weaknesses:
+
+- Authors' proposed mechanism for bulk zeroing proposes to add reserved zero rows to each subarray and use FPM copy
+mechanism to perform the bulk zeroing. However, this can lead to gaps in physical address space and memory interleaving
+techniques will have to be used to offset that. Thus, bulk zeroing machanism that authors propose strongly encourages
+the use of interleaved memory.
+
+- In Section 4.2.1, authors describe the set of conditions for RowCLone to be able to perform a copy. It is the opinion
+of this reviewer that the set of conditions for FPM is rather restrictive and limits it's use in general applications.
+PSM method is less restrictive and only requires the source and destination regions to be cache-line alighned
+and that operation span the full cache line. However, even then, both FPM and PSM together do not cover every possible
+copy operation and some memory regions will have to be copied using the standard techniques used in modern processors.
+Authors do not provide the breakdown of how often a baseline (involving processor) method will have to get involved when
+performing copies in modern applications and how often RowClone will be able to avoid using the standard method.
+
+- Because the proposed method performs copy completely inside DRAM, there is the need for memory controller to manage
+cache coherence. Cache management for multi-core machines is already quite complicated and RowClone potentially adds
+another layer of complexity.
+
+- Copy and bulk initialization operations are not guaranteed to be atomic and as such need to be performed inside the
+critical section, which can potentially affect the operation of other processes/cores.
+
+
+4. Suggestions/Feedback:
+
+- Authors evaluate RowClone using Fork system call as well as copy/memory intensive applications, which understandably
+benefit a lot from the proposed mechanism. However, authors do not show how often a memory copy/bulk initialization is
+performed during normal system operation or conduct a study of how many copy/bulk initialization operations are involved
+in standard CPU benchmarks (SPEC for instance). Authors also do not present the overall system speedup obtained by using
+DRAM with their proposed mechanism. It would be good to see how much overall speedup is achieved when using RowClone
+for a representative set of benchmarks. Authors do state that they use SPEC CPU2006 set of benchmarks, but they select
+a set of benchmarks that is memory-intensive.
+
+- Authors' mechanism requires changes across the stack in order to implement it and authors do describe the required
+changes well and in sufficient detail. However, as per the previous point, a more comprehensive study of the overall
+system speedup obtainable from RowClone is required before it can be determined if these changes are worth implementing.
+
+- The paper is written very well and is easy to understand. I liked the explanation of DRAM operation in section 2.
+It was very concise and clear and allowed me to understand the paper easier.
+
+- I liked that authors were looking into the future and mentioned the compatibility of RowClone with accelerators. I
+think this is important in view of the end of Moore's law and the new era of accelerators.

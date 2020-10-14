@@ -74,3 +74,55 @@ devices.
 
 Brief Timelnine:
 
+- Motivating the problem.
+We will compile a list of types of data that is gathered from IoT devices, from which we will
+pick several heavy/medium datatypes by size. We will then compile a list of devices that collect that kind of data. We
+will estimate how much data is uploaded from these devices simulataneously (by consulting the manuals). This will serve
+to demonstrate that the amount of data available from IoT devices is overwhelming and that it will not be possible to
+not just analyze it, but to upload and store it without putting enormous stress on communication infrastructure.
+
+- Data patterns analysis.
+We will analyze the data and computation patterns of the data types collected by IoT devices and classify the data into
+categories by data type size and computational requirements.
+
+- Accelerator classes proposal.
+Based on our classification of data and computation patterns, we are looking to propose several classes of accelerators
+and devices that will allow to offload the computation of the desired results to the IoT device (or close to it). We are
+looking to analyze power and size requirements as well.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

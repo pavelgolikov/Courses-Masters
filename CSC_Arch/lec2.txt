@@ -8,5 +8,3 @@ Power consumption
 When trading parameters, not all parameters can be linearly related -> review physics
 
 Why not increase instruction window? Data dependencies are scaling quadratically.
-
-

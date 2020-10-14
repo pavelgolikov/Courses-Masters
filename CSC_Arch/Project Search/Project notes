@@ -1,14 +1,3 @@
-Project Accelerated Analytics on IOT devices.
-
-With massive expansion of IOT devices there will be a lot of data moving around. Correspondingly, there will be the need
-to analyze and process all of this data.
-
-Aim of this project is as follows:
-
-1. Analyze the operations and data movement in common IOT devices.
-2. Analyze the computation demands of those operations.
-3. Potentially propose interesting hardware to accelerate data analytics.
-
 What Are IoT Devices?
 An IoT device is a piece of hardware with a sensor that transmits data from one place to another over the Internet.
 Types of IoT devices include wireless sensors, software, actuators, and computer devices. They can be imbedded into
@@ -16,23 +5,11 @@ mobile devices, industrial equipment, environmental sensors, medical devices, an
 convey usage and other data, can potentially provide insights that lead companies to cost reductions, efficiency gains,
 and new business opportunities.
 
-General questions:
-
-At which point do we analyze things? At the device? At the cloud?
-
-Where would I find the following info:
-
-What kind of data IOT devices collect?
-
-Current Stage:
-
 Ways to classify:
 Classify by physics -> data types -> operations
 Classify by use (Medical, Production, Fitness, Safety, etc...) -> data types -> operations
 Classify by target -> are they tracking you or the environment?
 Classify by type -> physical data (pressure, temperature etc...) vs readily analyzable data (video, voice etc...)
-
-
 
 In terms of physics, what kind of data can IoT devices collect:
 
@@ -50,12 +27,10 @@ Images
 - Scientific
 - Safety and Security
 - Traffic analysis
+- Ultra-sound - fishing deep water search
 
 Light Sensors
 - Sleep tracking
-
-Ultra-Sound
-- Underwater search (fishing)
 
 Motion Sensing
 - Security systems
@@ -99,59 +74,7 @@ Chemical
 - CO2 detection
 - Dangerous chemical detection - Industrial IoT devices
 
-
-Most data is collected over time for tracking/analysis purposes.
-
-How long is the cycle turnaround for data?
-
-Seconds? Hours? Days? Weeks?
-
-The longer the turnaround, the more opportunity for architectural injections.
-
-Any combination of the above types of data can and are collected.
-
-
-DATA patterns could dictate the computational requirements.
-
-Potential idea:
-
-Data center (dedicated or extension of current ones) that would offer data analytics for IoT devices to keep hardware
-utilization busy. How to justify? Current data centers focus complicated compute and IoT devices data might require
-large parallelism but simple cores or accelerators.
-
-
-What kind of data related operations are performed on IOT devices?
-How is data stored on IOT devices?
-
-Mobile and systems.
-
-TinyML small devices - course Harward and MIT.
-Vijay
-
-What is industry doing with IOT devices?
-
-
-Anand meeting notes:
-
-At first, targeting hospital, now 5G, IOT devices.
-
-Classify devices by the type of data they collect. Classify data. and go from there.
-
-Video quering - one of the areas where people explore.
-
-Google talks about problems people face with big data.
-
-
-Current references/Resources:
-
-
-
-
-
-Existing hardware targeting IOT:
-
-GAP8 (https://groupgets.com/campaigns/576-gapuino-combo-kit)
-
+Most data is collected over time for tracking/analysis purposes and any combinations of the above can be collected.
 
 IDEAS:
 
@@ -175,31 +98,25 @@ traffic from IoT devices would be a medium size node, where a medium size custom
 Home where there are a lot of simpler devices with small power consumption and with data with lower computational
 requirements can benefit from placing a lot of compute on the personal computer or even a phone.
 
+Another argument for IoT analytics: industries like aviation can not afford to wait for datacenter analysis, there it
+needs to be done in real time. Think of other industries where real time is needed.
+
 
 Gennady Meeting September 30 2020:
 
 take main sources of data and how much compute would be needed to handle it.
-
 estimate how much you can process.
-
 How fast to run a simple query on that kind of data.
 
 We are coming to territory that is infeasinble
 
-power is there, place compute on the IoT devices.
-
 How massive is the amount of data coming in and how much compute is needed to handle it?
-
-if putting sensors near 5G why not put it near sensors as well.
 
 Figure out magnitude of categories and estimate hwo much data they can generate in an minute/hour?
 
 Frequency of how often collected. Make a range for each category.
-
 look at the manuals of the devices and with what frequencies.
-
 pick devices that generate data first.
-
 
 Microsoft project with farms where they could not send live videos.
 

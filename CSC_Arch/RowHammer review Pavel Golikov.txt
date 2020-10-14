@@ -1,0 +1,30 @@
+RowClone paper review by Pavel Golikov (Student Number 994973230)
+
+1. Brief Summary of the paper:
+
+
+
+Key ideas of the paper are as follows:
+
+
+Key insight is
+
+
+2. Strengths of the paper:
+
+
+
+3. Paper's weaknesses:
+
+- PARA solution is not certain, which would likely prohibit it from applications where human lives are involved.
+
+- PARA solution proposes refreshing adjacent rows, but from Figure 9 it is clear that not only adjacent rows are the
+victims.
+
+- For PARA to be implemented would require for manufacturers to disclose details of their remapping techniques, which
+is unlikely since this is proprietary information.
+
+4. Suggestions/Feedback:
+
+
+- I liked

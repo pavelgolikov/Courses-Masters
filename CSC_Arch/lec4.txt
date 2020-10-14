@@ -1,5 +1,5 @@
 DRAM problems:
 
-energy: transfering data takes 1-3 orders of magnitude more than compute on this data.
+energy: transfering data takes 3 orders of magnitude more than compute on this data.
 
 latency: transferring data takes much longer than compute.

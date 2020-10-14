@@ -1,0 +1,76 @@
+
+Main sources of data:
+
+-video uploading devices
+
+Biggest uses:
+
+Surveillance cameras and connected cars. ~ 40 million total together.
+
+Surveillance (assuming 12 hours a day): 20,000,000 * 12 hours a day * 2Mb/sec = 216 Petabytes /day
+Connected cars (assuming 2 hours a day): 20,000,000 * 2 hours a day * 2Mb/sec = 36 Petabytes /day
+
+Total is 252 petabytes per day from just these two sources.
+
+What kind of accelerator is possible for surveillance? animal detection, traffic cameras, etc...
+
+Smart cities account for the biggest IoT device usage sector.
+
+
+take main sources of data and how much compute would be needed to handle it.
+estimate how much you can process.
+How fast to run a simple query on that kind of data.
+
+We are coming to territory that is infeasible
+
+How massive is the amount of data coming in and how much compute is needed to handle it?
+
+Figure out magnitude of categories and estimate hwo much data they can generate in an minute/hour?
+
+Frequency of how often collected. Make a range for each category.
+look at the manuals of the devices and with what frequencies.
+pick devices that generate large amounts of data first.
+
+Microsoft project with farms where they could not send live videos.
+
+Categorize by compute complexity and types of data generated.
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+3 main arguments we can make:
+
+1. Compare total amount of incoming data and total amount of existing cloud compute and argue that there is not enough
+compute
+
+Number in the spreadsheet:
+https://docs.google.com/spreadsheets/d/1GFZk2uijFLzISh6rNzd9tjekB9S0XOWX9leOn5GN_lA/edit?usp=sharing
+
+Maybe estimate video data separately and analyze compute for it separately because it takes more compute than normal
+data?
+
+Key question: what is the good ratio between IoT compute and cloud compute.
+
+By how much can our approach reduce the amount of data? Depends on:
+- Ratio of compute edge handles compared to cloud
+- IoT application in question
+
+How to classify the apps and estimate data savings?
+We can propose several classes of accelerators that would go into different devices based on size, power, and compute
+needs.
+
+Quantize data if possible
+Filter data
+Summarize data
+
+------------------------------------------------------------------------------------------------------------------------
+
+2. Compare price of computing on the cloud on raw data vs price of processing simple queries on simple machines on the
+edge and argue that it is cheaper to filter on the edge and deliver summarized data to cloud.
+
+------------------------------------------------------------------------------------------------------------------------
+
+3. Compare the total amount of traffic required for the data and argue that network can be a serious bottleneck. Data
+movement is much more expensive than compute in terms of time and energy - expand on that and look at CSC2224 lecture
+for more justification.
+
