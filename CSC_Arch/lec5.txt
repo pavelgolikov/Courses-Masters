@@ -1,0 +1,5 @@
+GPUs:
+
+Why not prefetcher on a GPU? Prefetcher essentially trades memory bandwidth for latency, but GPUs are already memory
+bandwidth bounded and latency is not a problem. It does not make sense to use prefetcher and limit memory bandwidth
+even further.

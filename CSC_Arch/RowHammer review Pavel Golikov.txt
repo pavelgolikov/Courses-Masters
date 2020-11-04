@@ -2,29 +2,65 @@ RowClone paper review by Pavel Golikov (Student Number 994973230)
 
 1. Brief Summary of the paper:
 
+This paper describes existence of disturbance errors in modern DRAM chips. Authors demonstrate that DRAM chips from
+3 large modern manufacturers are affected by existence of this error. They also note that chips from these
+vendors manufactured in 2012/2013 are affected by errors of this nature (authors also construct a malicious program
+that induces this phenomenon). Authors demonstrate that only 140K reads from a DRAM row can introduce disturbance errors.
+Authors argue that such errors occur because of voltage fluctuations on a wordline in a specific row, and this induces
+errors in nearby. It is also noted that older chips are not affected by this phenomenon, because the distance between rows and the size of the cells is larger compared to newer chips,
+which were manufactured with more advanced methods that improve density (but result in disturbance errors). Authors
+examine several potential solutions and propose PARA (probabilistic adjacent row activation). This mechanism refreshed
+a nearby rows with a small probability, such that if a row is toggled many times, there is a high likelihood that
+nearby rows will be refreshed, which will prevent disturbance errors. Authors claim that PARA's instruction throughput
+degradation is only 0.197% across 29 benchmarks.
 
 
 Key ideas of the paper are as follows:
 
+- Modern DRAM chips suffer from a vulnerability that can be exploited by malicious program to affect the execution
+of other programs or crash the system.
 
-Key insight is
+- All DRAM chips produced in 2012/2013 using the state-of-the-art manufacturing process are affected by disturbance
+phenomenon because they are manufactured with methods that allow for density so high that rows of DRAM are close enough
+and cells are small enough to induce errors within nearby rows.
+
+- Disturbance errors can be induced by repeated toggling of a wordline in a DRAM bank's row, resulting in errors in
+nearby rows.
+
+Key insight of the paper is that because of new production methods, DRAM chips has achieved such high levels of
+density that repeatedly reading from a DRAM row can induce disturbances in nearby rows due to voltage fluctuations.
 
 
 2. Strengths of the paper:
 
+- Authors explain in a lot of detail the mechanics of disturbance errors and conduct a VERY thorough study of the
+phenomenon as well as discuss various factors that potentially cause disturbance errors, including year of module
+manufacture, various types of modules, temperature, access pattern dependence, refresh interval, activation interval,
+number of activations and others.
+
+- Authors also thoroughly analyze various solutions that would help alleviate the problem.
+
+- PARA, the solution proposed by authors, has very low performance overhead and a very low chance of error occurrence.
 
 
 3. Paper's weaknesses:
 
-- PARA solution is not certain, which would likely prohibit it from applications where human lives are involved.
+- PARA, the solution proposed by authors, does not eliminate disturbance errors with certainty, which will likely
+preclude it from being used in applications where human lives are involved and other high risk applications that would
+require highly risk-averse solutions.
 
-- PARA solution proposes refreshing adjacent rows, but from Figure 9 it is clear that not only adjacent rows are the
-victims.
+- For PARA to be implemented would require for DRAM manufacturers to disclose details of their DRAM mapping techniques.
+This is proprietary information and it is unlikely that manufacturers will be willing to disclose that.
 
-- For PARA to be implemented would require for manufacturers to disclose details of their remapping techniques, which
-is unlikely since this is proprietary information.
 
 4. Suggestions/Feedback:
 
+- Authors consider PARA, their solution, and frequent row refresh, a naive solution. Perhaps it is possible to combine
+the two approaches and adjust refresh frequently only those rows that are in danger of being the victim rows or
+perform frequent refresh only for rows in the same bank as the bank where most recent accesses were performed. This
+way it would be guaranteed that there will not be disturbance errors and at the same time the prohibitively large
+overhead of refreshing all rows could be avoided.
 
-- I liked
+- I liked how thorough the investigation of the causes of the errors was and how authors considered every factor that
+comes to mind when analysing the causes of the errors. I also liked how detailed the explanation of the mechanics of
+why the errors occur, which went all the way down to the level of physics.

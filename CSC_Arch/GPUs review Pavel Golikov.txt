@@ -1,0 +1,73 @@
+GPU and the future of parallel computing paper review by Pavel Golikov (Student Number 994973230)
+
+1. Brief Summary of the paper:
+
+In this paper, the authors are first discussing the challenges and future research directions for parallel computing
+chips. Authors consider power efficiency requirements that future chips would have to satisfy considering the end of
+Dennard's scaling and Moore's law. Important factors such as instruction overheads and data movement overhead are
+considered as well. Authors also discuss memory bandwidth and programmability challenges of future parallel systems. For
+the considered challenges, the paper outlines existing research directions and proposed solutions.
+    Authors then describe a research GPU architecture that would address challenges they outline in the first part
+of the paper, such as energy efficiency, memory bandwidth and programmability of scalable parallel systems.
+
+Key ideas of the paper are as follows:
+
+- Data movement and instruction-related (data supply, instruction supply, and control) overheads are dominating the
+energy usage of modern latency optimized processors.
+
+- Memory bandwidth is a known bottleneck and has not been scaling as well as computing power in modern memory systems.
+
+- Modern programming model focuses on sequential homogenous machines, but modern parallel architectures have already
+moved away from this model of execution. Thus a revised programming model is needed which would allow for easier
+programmability of future heterogeneous architectures.
+
+The key insight of the paper is that due to end of Dennard's and Moore's law scaling, future parallel computing systems
+are facing a set of challenges that will likely be solved by future novel architectures where GPU and CPU will be
+integrated on a single die using unified memory architecture for energy efficient computing.
+
+
+2. Strengths of the paper:
+
+- Paper performs a very detailed analysis of energy-related challenges that modern computer architectures face
+
+- Authors outline requirements that future architectures will have to fulfil (energy per floating point operation
+is one example) in order to satisfy energy efficiency requirements of future systems.
+
+- Echelon is an interesting novel architecture with interesting features, such as flexible memory architecture and
+efficient data transfer between hierarchy levels.
+
+
+3. Paper's weaknesses:
+
+- In programmability subsection, authors correctly point out that most programming systems do not provide a convenient way
+to program tens/tens of thousands threads on a single die. Although it is true that this challenge remains, it is also
+true that such degree of parallelism is uncommon in most applications. Massively parallel workloads remain a specific
+domain.
+
+- In heterogeneity section authors claim that future machines will be increasingly heterogeneous and that vastly
+different processing elements will be integrated on a single chip. However, authors do not provide any justification for
+this claim. It is entirely feasible that future architectures will be homogeneous, containing an increased number of
+general-purpose cores and the needs of specific workloads will be satisfied by a number of accelerators.
+
+- In the second paragraph of "Echelon: A research GPU architecture" section, authors claim that GPUs will no longer be
+an external accelerator to CPU and instead will be integrated on the same die with a unified memory architecture. This
+is not likely to be true. Massively parallel nature of GPUs requires massively parallel
+workloads that are not very common in general, thus having large amount of GPU cores that will be sitting idle will
+reduce hardware utilization. Why should someone without the need for massively parallel
+compute purchase such a chip? Users are likely to purchase general purpose CPU cores and add required accelerators.
+
+- In general, it seems that authors are treating the co-location of GPU and CPU on a single chip as a foregone
+conclusion. Assuming that, authors are advocating for a unified programming model for such chips.
+Such a unified programming model makes sense if CPU and GPU are already co-located. I believe that authors
+neither effectively address challenges associated with, nor provide sufficient justification, for such co-location.
+
+
+4. Suggestions/Feedback:
+
+- This reviewer would like to see more substantial justification for co-locating of GPU and CPU to the same die. If
+authors want to argue that GPU can perform general compute in addition to general-purpose CPUs, then authors need
+to at least analyze some benchmarks and workloads and show that increasing the number of general purpose CPU cores by
+a reasonable amount (say, 16 or 32) will not be sufficient for common applications.
+
+- I liked the fact that authors provided very detailed energy requirements for future chips and analyzed data movement
+and instruction overheads in great detail.

@@ -1,0 +1,23 @@
+RowClone paper review by Pavel Golikov (Student Number 994973230)
+
+1. Brief Summary of the paper:
+
+
+Key ideas of the paper are as follows:
+
+Key insight of the paper is that  a DRAM row can induce disturbances in nearby rows due to voltage fluctuations.
+
+
+2. Strengths of the paper:
+
+- Like that they support low level atomic operations that allow the programmer to explicitly specify memory
+ordering constraints, which allows very careful programmer to implement near optimal code. (Section 6).
+
+3. Paper's weaknesses:
+
+- In Section 3, making trylock fail "spurously" makes it very counterintuitive for programmers.
+
+4. Suggestions/Feedback:
+
+I liked that in the paper.
+
