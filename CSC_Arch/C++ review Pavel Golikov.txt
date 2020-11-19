@@ -1,23 +1,64 @@
-RowClone paper review by Pavel Golikov (Student Number 994973230)
+Few sentences about Lamport's sequential consistency paper:
+
+I believe that Lamport's sequential consistency paper is a very interesting work, which essentially defined the
+sequential consistency. The author provides clear requirements for the processor to be sequentially consistent and
+discusses why each requirement is actually requires, with examples. Author gives a lot of examples and the paper is very clear to read.
+
+C++ paper review by Pavel Golikov (Student Number 994973230)
 
 1. Brief Summary of the paper:
 
+This paper describes the memory model for supporting multi-threaded programs for C++ language. Authors choose to
+not support programs that involve data races. For all other programs the authors give sequentially consistent semantics.
+Authors present two models. Simple model without low level atomics, intended for regular users without what authors call
+"expert" knowledge in multithreaded programming. The other model is more involved and is targeting more advanced users.
+The more advanced model allows users to explicitly specify memory ordering constraints, which in turn would allow an
+experience user to write near optimal code. Authors conclude the paper by proving a set of theorems that show that
+their characterization of data races is equivalent to the more traditional one.
 
 Key ideas of the paper are as follows:
 
-Key insight of the paper is that  a DRAM row can induce disturbances in nearby rows due to voltage fluctuations.
+- Unfettered hardware optimizations in multicore architectures result in a memory consistency model that is very hard to
+formalize and use.
+
+- A simple change to some synchronization primitives (trylock's specifications) eliminates the need for complicated data
+race definitions in presence of some non-intuitive ways of using those primitives.
+
+Key insight of the paper is that their proposed memory model does not provide any semantics for programs with data
+races because of the following reasons: pthreads library states that they also essentially treat data races as
+undefined; there is little to be gained by defining semantics for data races because C++ already allows cheaply
+implementable and memory ordering properties; authors try to keep the costs of C++ constructs low; allowing data races
+would violate some compiler optimizations.
 
 
 2. Strengths of the paper:
 
-- Like that they support low level atomic operations that allow the programmer to explicitly specify memory
-ordering constraints, which allows very careful programmer to implement near optimal code. (Section 6).
+- Authors support low level atomic operations that allow the programmer to explicitly specify memory
+ordering constraints, which allows very careful programmer to implement near optimal code (Section 6). This allows the
+programming language to be more flexible.
+
+- Authors give strong justification for their decision not to support data races.
+
+- Authors provide detailed proofs that 2 ways they describe data races in two version of proposed memory model (simple
+and more advance) are equivalent, which is important.
 
 3. Paper's weaknesses:
 
-- In Section 3, making trylock fail "spurously" makes it very counterintuitive for programmers.
+- Author's proposed weak memory model (designed for advanced users) makes some commonly accepted compiler optimizations
+invalid. As described in the following paper (https://fzn.fr/readings/c11comp.pdf). It is noted that standard
+source-to-source transformations become invalid because of causality cycles that are allowed by C++ semantics. As such,
+if an advanced user uses the relaxed memory consistency model, they might not benefit from some compiler optimizations.
+
+- In Section 3 authors describe a way to eliminate the need for complicated definitions of data races produced by
+some unconventional uses of trylock. Authors propose making trylock fail "spuriously", which makes it counterintuitive
+for programmers. If I run a trylock instruction and the lock is not acquired, it would be my expectation that thread
+acquires the lock in this situation.
 
 4. Suggestions/Feedback:
 
-I liked that in the paper.
+- The paper is written in a very technical language that is not explained well and it makes it very hard to read.
+Authors often use terms that are not clearly defined or ambiguous. There are sections where terms and definitions are
+well defined, and those are easier to understand, but a lot of sections are very hard to read and understand.
+
+I didn't like how the paper was written. I think that authors should have presented more examples.
 

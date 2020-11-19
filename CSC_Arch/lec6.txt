@@ -12,3 +12,10 @@ work on structure of the talk
 build on top of paper slides
 
 think about papers in advance
+
+For each graph, explain what is the x-axis and what is the y-axis and the main takeaway.
+
+for each slide, what is the main takeaway.
+
+
+
