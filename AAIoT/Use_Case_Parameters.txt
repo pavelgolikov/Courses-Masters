@@ -1,0 +1,21 @@
+Parameters of the use case that we are looking for:
+
+1. Large quantities of data need to be generated - sensors that are transmitting often
+2. IoT related - small sensors
+3. Not video - this area is too explored
+4. Not solved by ML - this area is also too explored
+5. Must have meaningful sensor component - be able to aggregate data on sensor.
+6. Must have meaningful cloud component - data from many sensors analyzed on the cloud 
+7. Many sensors each collecting a lot of data in the same place/area.
+
+Potential use cases:
+
+1. Industrial.
+
+Since the lifetime of industrial equipment is measured in years, in this use case sensors are not collecting 
+continuously but sample data at pre-determined time periods.
+
+2. Medical.
+
+Data can not leave the hospital, which means htat there is no cloud component to the query. Everything is essentially
+on the edge already.

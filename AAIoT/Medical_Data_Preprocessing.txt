@@ -1,0 +1,58 @@
+Medical Data Preprocessing:
+
+High level operations performed:
+
+------------------------------------------------------------------------------------------------------------------------
+1. Data Denoising (Frequency based filtering, Wavelet Transform).
+
+Existing Accelerators:
+
+http://www.scielo.org.co/scielo.php?script=sci_arttext&pid=S1794-91652016000200129 - Table 1 contains 11 more chips
+
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8693790 - ML solution using AutoEncoder
+
+https://www.mdpi.com/1424-8220/15/10/26396/htm - Circuit
+
+https://www.sciencedirect.com/science/article/pii/S0003682X19304827?dgcid=rss_sd_all
+
+This is a very explored area with many proposed architectures. Any signal processing is quite well explored.
+
+------------------------------------------------------------------------------------------------------------------------
+2. Signal/Missing Value inputation. (Upsampling)
+
+Could not find dedicated accelerators. In software this is usually computed using libraries or in MATLAB.
+
+------------------------------------------------------------------------------------------------------------------------
+3. Signal Normalization: convert all signals to same value
+
+Existing Accelerators:
+https://link.springer.com/article/10.1007/s00034-019-01262-3 - nothing is said about it being small or portable
+
+https://ieeexplore.ieee.org/abstract/document/6542014 - power efficient
+
+
+------------------------------------------------------------------------------------------------------------------------
+4. Incompliant (with human life) Signal Values Filtering
+
+Could not find dedicated accelerators. In software this is usually computed using libraries or in MATLAB.
+
+------------------------------------------------------------------------------------------------------------------------
+General Accelerators:
+
+An Energy-Efficient Biomedical Signal Processing Platform
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5783951
+
+Low Power Processor With ML accelerators For Medical-Sensor Signal Analysis
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6493458
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+Do we need a small accelerator? All machines in the hospital room are plugged in, so this is not exactly IoT 
+where processors need to be ultra-low power. An existing circuit can be put onto the sensor and used to do 
+preprocessing.
+
+Why would we pre-process the values on the sensor in the first place? Hospital server is essentially the edge
+node. Process everything there.
+
+

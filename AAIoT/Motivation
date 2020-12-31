@@ -1,0 +1,47 @@
+3 main motivating points:
+
+1. Compare total amount of incoming data and total amount of existing cloud compute and argue that there is not enough
+compute
+
+Number in the spreadsheet:
+https://docs.google.com/spreadsheets/d/1GFZk2uijFLzISh6rNzd9tjekB9S0XOWX9leOn5GN_lA/edit?usp=sharing
+
+Key question: what is the good ratio between IoT compute and cloud compute.
+
+By how much can our approach reduce the amount of data? Depends on:
+- Ratio of compute edge handles compared to cloud
+- IoT application in question
+
+How to classify the apps and estimate data savings?
+We can propose several classes of accelerators that would go into different devices based on size, power, and compute
+needs.
+
+Next tasks:
+
+- Think of meaningful statistics that could be computed on IoT devices.
+
+- Think of applications that you WANT run on the IoT device that are not run right now because there is not enough
+compute on the device.
+    - Talk to Eyal's group to find what is done currently on IoT and edge and what would they WANT to be done there.
+    -
+
+------------------------------------------------------------------------------------------------------------------------
+
+2. Compare price of computing on the cloud on raw data vs price of processing simple queries on simple machines on the
+edge and argue that it is cheaper to filter on the edge and deliver summarized data to cloud.
+
+Next tasks:
+
+Pick a provider like Samsung and look at volume of sold IoT devices, look at what that device collects and calculate the
+amount of data that needs to be analyzed. Calculate how much it would cost to analyze it on the cloud vs on the device
+and compare in terms of TFLOPS or IPC. Use m6g.16xlarge reserved instance on AWS vs some cheap ARM chip (purely in
+terms of cost for now). Put yourself in the shoes of the decision maker and go from there.
+
+Since the devices are likely to be collected from for 5 years, scale the data by 5 years.
+
+------------------------------------------------------------------------------------------------------------------------
+
+3. Compare the total amount of traffic required for the data and argue that network can be a serious bottleneck. Data
+movement is much more expensive than compute in terms of time and energy - expand on that and look at CSC2224 lecture
+for more justification.
+
