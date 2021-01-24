@@ -23,7 +23,7 @@ This is a very explored area with many proposed architectures. Any signal proces
 Could not find dedicated accelerators. In software this is usually computed using libraries or in MATLAB.
 
 ------------------------------------------------------------------------------------------------------------------------
-3. Signal Normalization: convert all signals to same value
+3. Signal Normalization: convert all signals to same value.
 
 Existing Accelerators:
 https://link.springer.com/article/10.1007/s00034-019-01262-3 - nothing is said about it being small or portable
@@ -45,8 +45,6 @@ https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5783951
 Low Power Processor With ML accelerators For Medical-Sensor Signal Analysis
 https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6493458
 
-
-
 ------------------------------------------------------------------------------------------------------------------------
 Do we need a small accelerator? All machines in the hospital room are plugged in, so this is not exactly IoT 
 where processors need to be ultra-low power. An existing circuit can be put onto the sensor and used to do 
@@ -55,4 +53,77 @@ preprocessing.
 Why would we pre-process the values on the sensor in the first place? Hospital server is essentially the edge
 node. Process everything there.
 
+------------------------------------------------------------------------------------------------------------------------
+Looking deeper into wearable medical devices:
 
+1. Data from remote patient monitoring:
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7527444
+
+What about data coming from inpatient sensors directly in the hospital? Does it make sense to analyze some of it on 
+the sensor directly?
+
+Data from inpatient sensors is currently going to the server inside the hospital. Some objections for that data to 
+go to the cloud are:
+
+1. There is not much aggregation going on anyway, so the amount of data is likely to increase instead of decreasing. 
+The data is filtered, denoised, missing values are put in, normalized, then fed into analysis software (often ML) or 
+visualization software for the doctor.
+
+2. Sensors are performing some preliminary denoising and filtering on the data according to:
+https://www.researchgate.net/publication/332823913_Edge_and_Fog_Computing_in_Healthcare_-_A_Review
+
+3. It makes sense that hospital server act as an edge node: 
+    - if data would be transferred to the cloud, then it would have to include a lot of metadata 
+    (much more than the data itself), so we would be inflating the amount of transferred data; 
+    - inside the hospital, much smaller amount of data would be transferred directly across hospital network.
+    - to avoid loss of access to the data over the internet, data should be stored inside the hospital, which 
+    means that raw data is sent to the cloud, analyzed there, then results plus raw data will be sent back to hospital.
+    Then a legitimate question is: why not analyze data on the edge node inside the hospital?
+    - currently health data is not allowed to leave the hospital.
+
+4. Doctors actually look at raw ECG waveform when performing analysis.
+
+5. Cloud could act as secondary records storage, but even that is doubtful because of privacy concerns and 
+internet connection concerns.
+
+
+
+
+Use the case of ecg data. Detect abnormal ecg patterns and send them to the doctor who can then make an appointment.
+See if we can have a pipeline on sensors: transform -> filter -> scaling -> analysis.
+
+Potential application:
+autonomous robots?
+
+
+Hi Gennady I know we talked about it only yesterday, but when I started looking at implementing window queries looking for disorders, I found that this idea has essentially been already commercialized:
+
+This sensor uses a smartphone app to detect abnormalities in EKG:
+https://www.amazon.ca/Alivecor-AL-KARDIAMOBILE-Kardia-Mobile/dp/B01A4W8AUK
+
+This paper proposes a sensor for long term analysis and Arythmia detection:
+https://www.mdpi.com/2079-9292/8/11/1300
+
+This paper explored essentially what my next step would be, but from power consumption standpoint of a mobile phone. They explored 3 scenarios: 
+1. Ecg data forwarding to the server through smartphone
+2. Limited processing on a smartphone - basic filtering, feature extraction, data forwarding
+3. Arrhythmia detection, then data forwarding
+https://link.springer.com/chapter/10.1007/978-3-319-11128-5_166
+
+This paper discusses limitations and challenges to smartphone-based assessment of cardiovascular diseases using ECG 
+and PPG. Among the challenges the cite is implementation of complex ECG analysis algorithms on smartphones:
+"Though smartphones nowadays have improved processors, they are still inadequate for the implementation of complex ECG 
+analysis algorithms. These algorithms used to run in high processors of laptops and PCs. The implementation of these 
+algorithms in a smartphone can improve the analysis, and the number of abnormalities is detected."
+https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-01199-7
+
+This paper from 2013 proposes another such system. On the page in the link there are a lot of papers proposing 
+the same thing basically:
+https://pubmed.ncbi.nlm.nih.gov/24110176/
+
+Finally, this article describes our use case exactly:
+https://www.practicalcardiology.com/view/livmor-halo-af-detection-system-receives-510-k-clearance-from-fda
+FDA approved Samsung sensor (https://www.livmor.com/#about) Livmor Halo is worn on the wrist and it detects cardiac
+disorders and connects with physicians through a cloud based portal.
+
+So I am not sure how useful it is to explore ECG use case, since it is essentially commercialized.

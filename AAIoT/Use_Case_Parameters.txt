@@ -17,5 +17,5 @@ continuously but sample data at pre-determined time periods.
 
 2. Medical.
 
-Data can not leave the hospital, which means htat there is no cloud component to the query. Everything is essentially
+Data can not leave the hospital, which means that there is no cloud component to the query. Everything is essentially
 on the edge already.

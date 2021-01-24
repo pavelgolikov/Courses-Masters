@@ -1,0 +1,9 @@
+1. Power usage:
+Power sensors usually measure once every 15-20 seconds, so not much data there
+
+Found papers that attempt to optimize for measuring intervals to reduce data and battery consumption in IoT sensors.
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6891624/
+
+Bottom line for sensors is:
+In general for these sensors, people think of smart collection strategies instead of continuously collecting.
