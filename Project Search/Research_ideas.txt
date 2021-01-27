@@ -4,6 +4,7 @@ Standard Architectures:
 structure.
     - when is the overhead of compiling fpga not prohibitively expensive compared to just executing on a GPU or 
     another accelerator?
+    test
 
 2. Propose FPGA/GPU hybrid. Certain number of cores are there to fit most workloads (floating point/int) and the rest
 are FPGA type arrays of gates to fit specific workloads. Maybe make it modular to be able to assemble an accelerator
