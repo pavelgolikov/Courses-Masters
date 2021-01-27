@@ -1,0 +1,114 @@
+Two Billion Devices and Counting + related papers on point clouds:
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8301138
+
+https://papers.nips.cc/paper/2017/file/d8bf84be3800d12f74d8b05e9b89836f-Paper.pdf
+
+https://www.cs.rochester.edu/horizon/pubs/micro20-mesorasi.pdf
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+Accelerator Level Parallelism Related Papers.
+
+- Accelerator Level Parallelism - blog post.
+https://www.sigarch.org/accelerator-level-parallelism/
+
+------------------------------------------------------------------------------------------------------------------------
+- Accelerator Wall
+https://parallel.princeton.edu/papers/wall-hpca19.pdf
+
+Description:
+Paper discusses various accelerators and creates methodology to separate the speedup gained from CMOS improvement vs the
+speedup gained from specialization of the chip (CSR). Using this methodology authors project future improvements that
+can be extracted from accelerators in several popular fields. Authors discuss the limits of accelerator specialization
+which they call accelerator wall.
+
+------------------------------------------------------------------------------------------------------------------------
+- Opportunities and Challenges for Next Generation Computing
+https://research.cs.wisc.edu/multifacet/papers/NextGenComputingChallenges.pdf
+
+Description:
+Article discusses challenges for current paradigms.
+
+Other potential problems motivated by this paper:
+
+1. A lot of information movement is happening in modern computers. Look for ways to eliminate that movement. Maybe look
+at ways to eliminate the excessive movement of data from and to accelerators?
+2. Look for where handshake is happening in current computers and look for ways to combine the two engines into a single
+machine to eliminate the overheads of handshake?
+
+
+------------------------------------------------------------------------------------------------------------------------
+- Crossing Guard: Mediating Host-Accelerator Coherence Interactions
+https://dl.acm.org/doi/10.1145/3037697.3037715
+
+Problem being solved:
+Future accelerators might benefit from sharing the address space with host and that accelerator cache and host cache
+will need to maintain coherence across the shared address space.
+
+Proposed solution:
+Paper proposes an interface for the interaction between Host and Accelerator coherence protocols. Authors propose a safe
+cache coherence protocol that would work even with buggy accelerators. Paper is somewhat speculative in that it
+speculates about future accelerators and their potential design.
+
+
+------------------------------------------------------------------------------------------------------------------------
+- Scaling Datacenter Accelerators With Compute-Reuse Architectures
+https://parallel.princeton.edu/papers/corex-isca18.pdf
+
+Problem being solved:
+The fast approaching end of Moore's law and Dennard scaling.
+
+Proposed solution:
+Reuse already computed results through memoization, i.e. use memory that is still scaling instead of CMOS that is going
+to stop scaling soon to store the already computed results of the frequently requested queries so as to not recompute
+them - a sort of cache for a database.
+
+
+------------------------------------------------------------------------------------------------------------------------
+- Border Control: sandboxing accelerators
+https://arch.cs.ucdavis.edu/assets/papers/micro15-border-control.pdf
+
+Problem being solved:
+If an accelerators shares memory with the host, there are security issues (unchecked, accelerators
+could make incorrect memory accesses, causing information leaks, data corruption, or crashes not only for processes
+running on the accelerator, but for the rest of the system as well). Hence there is need for "border control" between
+accelerators and the rest of the system.
+
+Proposed solution:
+Authors propose a system that implements such control.
+
+
+------------------------------------------------------------------------------------------------------------------------
+- Pushing the limits of accelerator efficiency while retaining programmability
+http://pages.cs.wisc.edu/~vinay/pubs/hpca16-lssd.pdf
+
+Problem being solved:
+High overall area footprint of DSA (Domain Specific Architecture - really specialized
+accelerator) as well as it being prone to obsoletion (for example when a new algorithm is discovered).
+
+Proposed solution:
+LSSD - an architecture composed of many tiny cores with configurable architecture, scratchpad and DMA (Direct Memory
+Access). Authors argue that they can obtain comparable acceleration with this more general architecture without going
+into full specialization. LSSD will also be programmable in normal languages, which will allow it to be more adaptable
+and scalable, and easier programmable than DSA accelerators.
+
+
+------------------------------------------------------------------------------------------------------------------------
+- Genesis: A Hardware Acceleration Framework for Genomic Data Analysis
+https://conferences.computer.org/isca/pdfs/ISCA2020-4QlDegUf3fKiwUXfV0KdCm/466100a254/466100a254.pdf
+
+Problem being solved:
+High obsoletion rate of genomics algorithms.
+
+Proposed solution:
+Framework where users represent genomic data manipulation operations with standardized SQL and user-supplied custom
+operations. Based on that, the framework computes configurable hardware modules that accelerate common SQL operations as
+well as genomic-data-specific operations. Users can then combine modules to accelerate a specific query.
+
+Strengths:
+Very good motivation - obsoletion of genomics algorithms.
+
+Weaknesses:
+No comparison to state of the art accelerators - only to multi-core CPU.
+Why do we not just use a generator to accelerate SQL operations in general? Why use this complicated approach?

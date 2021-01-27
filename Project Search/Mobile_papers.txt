@@ -1,0 +1,106 @@
+HPCA 2015 - 2020
+MICRO 2015 - 2020
+ASPLOS 2015 - 2020
+ISCA 2015 - 2020
+
+------------------------------------------------------------------------------------------------------------------------
+
+Simulators and tools:
+
+https://ieeexplore.ieee.org/document/8675198
+Gable: bottleneck analysis model by Mark Hill and Vijay. This tool is made to help in early design stages of SOC
+development. IPs that SOC will use are selected and each of the selected IPs is modeled with a simple roofline model 
+and then the tool combines the results and models the bottlenecks in the SOC that would result from using the IPs 
+selected. In future work authors say: "While Gables models each IP with a simple roofline, future work could 
+incorporate more-sophisticated sub-models, regarding on-chip memory trade-offs, IP interaction overheads, 
+specific IPs like GPUs, etc."
+
+https://dl.acm.org/doi/10.1145/3241539.3267737
+META: trace based tool for facilitating the exploration of memory hierarchies in mobile devices.
+
+https://dl.acm.org/doi/10.1145/3307650.3322221
+Emerald: simulator that allows studying system-level SOC interactions while including graphics impact. Basically this
+is Tor Aamodt extending his GPGPU simulator to mobile SOCs. This is said to be able to simulate full SOCs.
+
+https://ieeexplore.ieee.org/document/7482099/citations?tabFilter=papers#citations
+MofySim: full system simulator that analyses energy consumption and performance for various apps (including browser).
+The reason browser is always mentioned is because it has become by far the biggest app for smartphones in terms of 
+usage and one of the biggest in terms of resource consumption. This simulator uses modified gem5 and Android image 
+to simulate full system. I read the paper and the focus seems to be on correctly modelling various network 
+behaviour and evaluating the system under these various behaviours. They do not focus so much on the IPs inside the 
+SOC itself. After reading the paper, I read more on SOC and different phone components and it looks to me that most
+of the IPs don't actually communicate much and the dataflow is in most cases going along the sensor/IP pipeline either
+to or from the CPU or the other way around: from CPU to sensor/IP pipeline and then to user or network.
+
+https://ieeexplore.ieee.org/document/9138919
+Mocktails: a methodology to synthetically recreate the varying spatio-temporal memory access behaviour of proprietary 
+heterogeneous compute devices. Tool is supposed to help architects evaluate their architectures by substituting
+Mocktails for proprietary compute devices in simulations. This paper is by Natalie's student by the way.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Mobile centric CPU optimizations:
+
+https://ieeexplore.ieee.org/document/8574592
+This paper caught my eye. Authors show that existing CPU optimizations that we are used to that target server/scientific
+workloads are not as effective in mobile CPUs, so they propose to group instructions into what they call Critical 
+Instruction Chains and implement a software solution in the compiler that improves fetch bandwidth of these 
+instructions. I thought that this might be an interesting direction: compare how well common server-level optimizations 
+are performing in mobile platforms and perhaps look at different optimizations that would improve the performance.
+
+https://ieeexplore.ieee.org/document/7446054  !!
+Mobile CPU's rise to power: Quantifying the impact of generational mobile CPU design trends on performance, energy, 
+and user satisfaction. Authors try to bridge the gap between cpu optimizations that were performed and user experience
+for mobile platforms. They build a tool to determine how much the optimizations will affect user experience.
+-Vijay's paper
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+QOS and User Experience:
+
+https://ieeexplore.ieee.org/document/7446053
+Improving smartphone user experience by balancing performance and energy with probabilistic QoS guarantee. 
+
+https://ieeexplore.ieee.org/document/7056028  !!
+Authors propose the concept of energy-efficient QoS (eQoS) to capture the trade-off between QoS and energy consumption. 
+Event based scheduling selectively slows down events that wouldn't affect use experience to save energy.
+
+https://ieeexplore.ieee.org/document/7783756
+Pretty much the same goal as paper above: reach user defined QOS while being energy efficient.
+
+https://ieeexplore.ieee.org/document/7856623
+In this paper, authors present a predictive DVFS controller that predicts the execution time of a job before it
+executes in order to appropriately set the DVFS level to just meet user response-time deadlines. Our results show 56% 
+energy savings compared to running tasks at the maximum frequency with almost no deadline misses.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Component coordination:
+
+https://ieeexplore.ieee.org/document/7056029  !!
+This paper proposes a coordinated multicomponent energy optimization mechanism for handheld devices, where the energy 
+profile of different components such as CPU, memory, GPU and IP cores are considered in unison to trigger the 
+appropriate DVFS state by exploiting the application domain knowledge. Specifically, we show that for the important 
+class of frame-based applications, the domain knowledge - frame processing rates, component utilization and available 
+slack - can be used to decide effective DVFS states for each component from among the numerous choices. 
+    The paper essentially does what Vijay is talking about (considering the communication between different IPs) 
+but for a group of applications. 
+
+https://dl.acm.org/doi/10.1145/2749469.2750382
+This paper also proposes coordintion of IPs for user-interactive and display based applications for the goal of avoiding
+unnecessary data transfers through memory and avoiding unnecessary CPU involvement in running those applications.
+    Basically addresses that same problem of IP device communication, but for interactive applications - same as
+previous paper.
+
+Same authors for above two papers.
+------------------------------------------------------------------------------------------------------------------------
+
+Various others:
+
+https://dl.acm.org/doi/10.1145/3123939.3123948
+Efficient video streaming on handheld devices.
+
+https://ieeexplore.ieee.org/document/7856624
+Paper proposes offloading native mobile applications to cloud, but since cloud can not execute native mobile apps,
+authors propose automatic cross-architecture computation offloading for general-purpose native applications.

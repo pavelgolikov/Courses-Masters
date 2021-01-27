@@ -1,0 +1,67 @@
+Top Architecture Conferences:
+ASPLOS
+ISCA
+MICRO
+HPCA
+
+------------------------------------------------------------------------------------------------------------------------
+Research directions I am noticing:
+1. Accelerator - Host interactions (cache coherence, security).
+2. Proposing new ideas for accelerator implementation.
+3. Architectures for different environments (mobile, datacenters, cloud).
+4. Attempts to generalize accelerators for many applications to ease programmability and make it universal.
+5. Prevent obsoletion of specific accelerators.
+6. Attempts to provide acceleration through improving Memory bandwidth.
+7. Co-design with existing systems. (Anand's work)
+
+------------------------------------------------------------------------------------------------------------------------
+Accelerated applications and accelerators used:
+ML - GPU, TPU, FPGA
+scientific computing - GPU, FPGA
+graphics rendering - GPU
+Cryptography
+XML processing
+regex matching
+database ops
+video decoding
+data compression
+In-memory accelerators/near-data accelerators
+wave signal processing
+
+------------------------------------------------------------------------------------------------------------------------
+How are accelerators created:
+
+High level synthesis:
+Description:
+Algo is described at a high level in C -> transcompiled into Hardware Description Language ->
+compiled into Hardware using a Logic Synthesis tool.
+
+Pros:
+Ease of synthesis
+
+Cons:
+Reduced performance compared to domain specific accelertors
+
+Domain Specific:
+Description:
+Accelerator is synthesised for a specific algorithm and type of workload.
+
+Pros:
+High performance
+High energy savings
+
+Cons:
+Specific Programming Interface
+High rate of obsoletion as workloads evolve and new algorithms develop
+
+General-purpose:
+Description:
+GPUs, DSP (Digital Signal Processors), SIMD extentions.
+
+Pros:
+Unified Programming interface
+Long term stability
+
+Cons:
+Not as specialized
+

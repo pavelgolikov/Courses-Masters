@@ -1,0 +1,79 @@
+Standard Architectures:
+
+1. Use FPGA as a generic accelerator in a machine and while the data is loading, configure it to have optimal
+structure.
+    - when is the overhead of compiling fpga not prohibitively expensive compared to just executing on a GPU or 
+    another accelerator?
+
+2. Propose FPGA/GPU hybrid. Certain number of cores are there to fit most workloads (floating point/int) and the rest
+are FPGA type arrays of gates to fit specific workloads. Maybe make it modular to be able to assemble an accelerator
+that fits your needs. Also could make it so that it can turn off unneeded compute resources and only use what is
+necessary after a profile run - that way it will save power.
+
+3. Benchmarks for new specialized architectures.
+
+4. Create tools to make recommendations for accelerator design based on workloads?
+
+5. Common accelerator that would be able to accelerate multiple workloads with one architecture?
+    - would need to look at modern architectures and characteristics of workloads for each accelerator and 
+    identify commonalities and then see if these things can be done on one accelerator.
+    - such accelerator would have simplified pipelines and SMs for SIMD processing.
+    - isn't fpga such an accelerator?
+
+6. Common control module for system's accelerators. Could it reduce data movement?
+
+7. Interconnect between accelerators to avoid data movement back to memory?
+    - identify cases (if they exist) where data is sent to one accelerator, then back to memory, then to another
+    accelerator. Propose to remove redundancy and send from one accelerator directly to another.
+    - identify data paths where data goes from one accelerator to the next.
+
+8. Why does GPU have to have it's own memory? With enough load latency hiding, can we not use CPU memory for GPU
+operations?
+
+9. Look into problem of information movement in modern computers? Look into mobile architectures and try reduce
+data movement there to make them more energy efficient.
+
+10. For in-memory compute: look at reordering common workloads so that operators that can be done in memory 
+are first in line or last.
+
+------------------------------------------------------------------------------------------------------------------------
+Much fewer papers are published on mobile architecture compared to datacenter architectures.
+Mobile architecture:
+
+10. Reduce data movement in mobile architectures.
+
+11. Many assume that user experience while browsing is solely affected by network performance. However, advancements 
+in LTE network and WiFi speeds have caused the browser to be more compute-bound. As such, the browser relies heavily
+on the CPU for its rendering and network processing. The browser typically spawns tens of threads that require a 
+large amount of data and code footprints along with frequent inter-process (thread) communication. Moreover, 
+most browsers like Chrome rely on an asynchronous execution model that exercises nearly all of the IPs in a mobile SoC,
+including the CPU, GPU, video and audio decoders, networking, crypto-engine, and the various communication IP blocks.
+    Would it make sense to look into mobile benchmarks and how mobile architecture can be improved to focus on the 
+browser?
+
+12. Designing a mobile architecture simulator with IP blocks etc...
+    - check if there are any mobile architecture simulators currently (Discussion of Methodology in Vijay's article).
+
+13. Look at architecture of mobile systems and see if there are optimizations possible across IPs and other components.
+    - will need to study workloads (which ones) and see how IPs and other parts of the architecture are interacting to
+    see if it is benefitial to connect IPs directly (Rule 8 in Vijay's article).
+
+18. Interfaces for orchestrating Communications in modern architecture (page 13 in 21 Century document).
+
+19. Flip the Ahmdal's maxim and think about processing power per memory bandwidth unit. Since memory is bottleneck,
+would it make sense to divide out by the bottleneck metric and obtain performance that way?
+
+20. How much metadata is being transferred in modern architectures? Can we reduce the amount of metadata with a
+different interface?
+
+21. In memory compute for smartphones for energy efficiency? Are there workloads that would use that?
+
+22. Can we make accelerator use host memory?
+
+23. Can we streamline memory? There is a lot of talk about making processor cores simpler to save on energy, but 
+most energy is spent fetching data. Can we make this process more efficient?
+
+24. Can we eliminate indexing lookup or reduce it somehow? That would speed up memory accesses?
+
+25. In the spirit of making cores simpler, would it make sense to study how deep data dependencies are? to see if 
+we can maybe make cores simpler because average dependency "depth" is not that much.
