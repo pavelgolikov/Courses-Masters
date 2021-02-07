@@ -23,6 +23,7 @@ Standard Architectures:
 structure.
     - when is the overhead of compiling fpga not prohibitively expensive compared to just executing on a GPU or 
     another accelerator?
+    test
 
 2. Propose FPGA/GPU hybrid. Certain number of cores are there to fit most workloads (floating point/int) and the rest
 are FPGA type arrays of gates to fit specific workloads. Maybe make it modular to be able to assemble an accelerator
@@ -84,11 +85,11 @@ browser?
 
 13. Look at architecture of mobile systems and see if there are optimizations possible across IPs and other components.
     - will need to study workloads (which ones) and see how IPs and other parts of the architecture are interacting to
-    see if it is benefitial to connect IPs directly (Rule 8 in Vijay's article).
+    see if it is beneficial to connect IPs directly (Rule 8 in Vijay's article).
 
 18. Interfaces for orchestrating Communications in modern architecture (page 13 in 21 Century document).
 
-19. Flip the Ahmdal's maxim and think about processing power per memory bandwidth unit. Since memory is bottleneck,
+19. Flip the Amdahl's maxim and think about processing power per memory bandwidth unit. Since memory is bottleneck,
 would it make sense to divide out by the bottleneck metric and obtain performance that way?
 
 20. How much metadata is being transferred in modern architectures? Can we reduce the amount of metadata with a
