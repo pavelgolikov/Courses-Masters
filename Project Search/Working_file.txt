@@ -1,0 +1,26 @@
+Talk with Jiacheng:
+
+1. build android app.
+2. NNAPI for android - interface with GPU
+
+DSP - Tensorflow might have support on this.
+
+TFLight uses OPENGL and OPENCL
+
+Check how OpenCL communicates data.
+
+Find libraries that help program DSPs.
+
+Use ADB to communicate at low level with Linux.
+
+power consumption of IPs:
+22, 41, 44
+
+design and verification of IPs:
+32
+
+For next meeting:
+
+Can we ask in industry if the IPs are chained together? If not - why? What can we do to facilitate this?
+
+

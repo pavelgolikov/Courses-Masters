@@ -1,20 +1,73 @@
-1. Discuss possible mobile architecture project with Gennady.
+1. Discuss Chita's group research into IP-IP interactions.
 
-Look into APIs for the phone's IPs.
+Component (IP) coordination:
 
-Jiacheng:
+https://dl.acm.org/doi/abs/10.1145/2591971.2591973
+GemDroid: full framework with IPs implemented.
 
-1. build android app.
-2. NNAPI for android - interface with GPU
+https://ieeexplore.ieee.org/document/7056029  !!
+Domain knowledge based energy management in handhelds.
+This paper proposes a coordinated multicomponent energy optimization mechanism for handheld devices, where the energy 
+profile of different components such as CPU, memory, GPU and IP cores are considered in unison to trigger the 
+appropriate DVFS state by exploiting the application domain knowledge. Specifically, we show that for the important 
+class of frame-based applications, the domain knowledge - frame processing rates, component utilization and available l
+slack - can be used to decide effective DVFS states for each component from among the numerous choices. 
+    The paper essentially does what Vijay is talking about (considering the communication between different IPs) 
+but for a group of applications. 
 
-DSP - Tensorflow might have support on this.
+https://ieeexplore.ieee.org/document/7011386 !!
+Short-Circuiting memory traffic in handheld platforms. Pretty much self explanatory. Another proposal for IP-IP
+communication by Chita.
 
-TFLight uses OPENGL and OPENCL
+https://dl.acm.org/doi/10.1145/2749469.2750382 !!
+Virtualizing IPs.
+This paper also proposes coordintion of IPs for user-interactive and display based applications for the goal of avoiding
+unnecessary data transfers through memory and avoiding unnecessary CPU involvement in running those applications.
+    Basically addresses that same problem of IP device communication, but for interactive applications - same as
+previous paper.
 
-Check how OpenCL communicates data.
+2. Discuss mobile core optimizations and workload characterization.
 
-Find libraries that help program DSPs.
+https://ieeexplore.ieee.org/document/8574592
+CritICs Critiquing Criticality in Mobile Apps
+This paper caught my eye. Authors show that existing CPU optimizations that we are used to that target server/scientific
+workloads are not as effective in mobile CPUs, so they propose to group instructions into what they call Critical 
+Instruction Chains and implement a software solution in the compiler that improves fetch bandwidth of these 
+instructions. I thought that this might be an interesting direction: compare how well common server-level optimizations 
+are performing in mobile platforms and perhaps look at different optimizations that would improve the performance.
 
-Use ADB to communicate at low level with Linux.
+https://ieeexplore.ieee.org/document/7446054  !!
+Mobile CPU's rise to power.
+Quantifying the impact of generational mobile CPU design trends on performance, energy, 
+and user satisfaction. Authors try to bridge the gap between cpu optimizations that were performed and user experience
+for mobile platforms. They build a tool to determine how much the optimizations will affect user experience.
+-Vijay's paper
+
+Propose heterogeneous cores on a single CPU chip based on the workloads mentioned above?
+
+https://ieeexplore.ieee.org/document/684446 ISPASS 2014
+Study of thread level parallelism on mobile devices. Authors conclude that mobile applications rarely use more than 2
+cores, which means putting more cores on device is not likely to improve performance by much.
+
+https://ieeexplore.ieee.org/document/6114205 !!
+Full-system analysis and characterization of interactive smartphone applications. Quote from abstract:
+    "We demonstrate that real-world interactive smartphone applications differ markedly from the SPEC suite. Specifically 
+the instruction cache, instruction TLB, and branch predictor suffer from poor performance. We conjecture that this is 
+due to the applications' reliance on numerous high level software abstractions (shared libraries and OS services). 
+Similar trends have been observed for UI-intensive interactive applications on the desktop".
+
+https://ieeexplore.ieee.org/abstract/document/6704679
+Performance, energy characterizations and architectural implications of an emerging mobile platform benchmark suite - 
+MobileBench. Authors propose a mobile benchmark suite MobileBench and perform the study of currect (in 2013) mobile
+cores. Authors also perform a sensitivity study of TLB, L2, and branch predictor on their proposed MobileBench suite.
 
 
+
+Meeting notes:
+
+Accelerators for mobile: GPU.
+
+
+power budget
+
+etc..

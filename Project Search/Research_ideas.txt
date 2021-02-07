@@ -1,3 +1,22 @@
+MAJOR IDEAS:
+
+- Heterogeneous mobile cpus with cores specilizing in popular applications. 
+    - Where does time go in mobile workloads execution?
+    - Where does energy go when executing mobile workloads?
+    - Where does data go?
+    - How can we optimize data structures and memory bandwidth in mobile CPUs? Are modern aggressive OOO systems
+    useful for current mobile workloads?
+    - What is memory traffic like? Is it optimized?
+    - What is power consumption like when executing those workloads? Why it is like that? Are there spikes? Why?
+
+- IP-IP communication in smartphone SOC.
+
+- Offloading computations from smartphone to the cloud. When to do it? What is the metric? offloading ML better than
+training on device?
+
+- Combine offloading and heterogeneous cores? 
+
+
 Standard Architectures:
 
 1. Use FPGA as a generic accelerator in a machine and while the data is loading, configure it to have optimal
@@ -36,11 +55,23 @@ data movement there to make them more energy efficient.
 10. For in-memory compute: look at reordering common workloads so that operators that can be done in memory 
 are first in line or last.
 
+11. Memory address load latency predictor. Device that would predict how latency-sensetive the piece of data is and 
+how much can we afford to delay or reschedule the load from this address. Then we could put that piece of data into 
+appropriate cache and make note of it.
+
+12. A very META study on MLP/ILP/DLP that would "recommend" the type of core that would perform well for a given
+workload (will use the core's MLP, ILP, and DLP). For example, if the workload has ILP > 1.5, use 2-issue wide OOO core.
+That way the insight will be: given characteristics of workload, this is the type of core you should use. Alternatively,
+we could approach this from the core perspective: say, 4-issue wide OOO core should be used when the workload has 
+DLP exceeding 3.0. Something along those lines. Does this make sense or do people just use CPU simulator to determine If
+their workload will run well or not.
+
+13. Can we use technique similar to video decoders but in computer memory? In order to reduce data movement we 
+do not send the whole cache/RAM line, but only a small part that was changed.
+
 ------------------------------------------------------------------------------------------------------------------------
 Much fewer papers are published on mobile architecture compared to datacenter architectures.
 Mobile architecture:
-
-10. Reduce data movement in mobile architectures.
 
 11. Many assume that user experience while browsing is solely affected by network performance. However, advancements 
 in LTE network and WiFi speeds have caused the browser to be more compute-bound. As such, the browser relies heavily
@@ -50,9 +81,6 @@ most browsers like Chrome rely on an asynchronous execution model that exercises
 including the CPU, GPU, video and audio decoders, networking, crypto-engine, and the various communication IP blocks.
     Would it make sense to look into mobile benchmarks and how mobile architecture can be improved to focus on the 
 browser?
-
-12. Designing a mobile architecture simulator with IP blocks etc...
-    - check if there are any mobile architecture simulators currently (Discussion of Methodology in Vijay's article).
 
 13. Look at architecture of mobile systems and see if there are optimizations possible across IPs and other components.
     - will need to study workloads (which ones) and see how IPs and other parts of the architecture are interacting to
@@ -75,5 +103,8 @@ most energy is spent fetching data. Can we make this process more efficient?
 
 24. Can we eliminate indexing lookup or reduce it somehow? That would speed up memory accesses?
 
-25. In the spirit of making cores simpler, would it make sense to study how deep data dependencies are? to see if 
-we can maybe make cores simpler because average dependency "depth" is not that much.
+25. Include temperature sensor on the smartphone and move the workload accross cores depending on heating?
+
+------------------------------------------------------------------------------------------------------------------------
+26. Operating system that can function in several modes. For example the smartphone can function as a smartphone or as
+a desktop computer.

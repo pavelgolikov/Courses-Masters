@@ -1,0 +1,36 @@
+Major contribution of the paper: the study of current processor inefficiencies when executing scale-out workloads.
+
+Explanation: clear what to do.
+
+Why is it important: because with the end of dennard's scaling and moore's law architectures will be specializing
+into workloads, which means that this work 
+
+Part 1:
+One major contribution of the paper is that authors have identified that scale-out workloads have low instruction and 
+memory level parallelism, which I think is the key contribution because it highlights the mismatch between modern CPUs
+designed for application  parallelism and scale-out workloads that don't always have that parallelism.
+    Modern general purpose processors have large instruction windows inside which they can reorder instructions
+and look for those that they can execute in parallel. They also have large load-store queues that allow for many 
+memory-reference instructions inside those instruction windows. As a result, modern CPUs are optimized to
+aggressively schedule as many instructions as possible in parallel. In order to support such aggressive scheduling, 
+modern CPUs have complex logic and data structures (ROB, LSQ for example) whose operation requires power.
+    Authors of the paper demonstrate that scale-out workloads have low instruction level parallelism, which means that
+there aren't that many instructions in those workloads that can execute in parallel. These workloads also have low
+memory level parallelism, which means there aren't that many memory-reference instructions inside that instruction
+window. Instead, scale out workloads have smaller number of repeated memory accesses with complex dependencies. This 
+means that many of those data structures in modern CPUs are, and this makes modern cores inefficient when executing 
+scale-out workloads.
+
+Part 2:
+One idea I have to expand on the above contribution is this. Modern mobile CPUs have long been optimized using 
+the same aggressive Out of Order techniques as desktop CPUs. As a result, it is possible that modern mobile cores
+could be too complex for mobile workloads. My idea is to examine how much ILP and MLP exists in modern mobile workloads.
+I think that it is likely that modern mobile workloads also do not have enough ILP and MLP to achieve sufficient 
+utilization of the common data structures used for aggressive OOO scheduling.
+    Among the most popular workloads I would pick Web Browser and Android Software Stack. It is well known that mobile
+CPUs are severely power constrained, which means having energy-efficient cores is very important for these devices. I
+would analyze the above mentioned mobile workloads and examine how much ILP and MLP exists in them. Then I would look
+into proposing simpler leaner cores that would be optimized for energy-effiency and performance. I would also try to
+group these workloads into sets by their compute requirements and then evaluate whether a mobile CPU would benefit 
+from heterogeneous design where multiple different cores would "specialize" in executing popular applications with 
+maximal energy efficiency.
