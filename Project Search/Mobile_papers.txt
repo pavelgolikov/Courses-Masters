@@ -61,7 +61,7 @@ for mobile platforms. They build a tool to determine how much the optimizations 
 
 Propose heterogeneous cores on a single CPU chip based on the workloads mentioned above?
 
-https://ieeexplore.ieee.org/document/684446 ISPASS 2014
+https://ieeexplore.ieee.org/document/6844468 ISPASS 2014
 Study of thread level parallelism on mobile devices. Authors conclude that mobile applications rarely use more than 2
 cores, which means putting more cores on device is not likely to improve performance by much.
 

@@ -1,0 +1,20 @@
+Part 1:
+- Major contribution: idea of speculatively executing 
+
+Part 2:
+I think this idea can be applied well to the concept of approximate computing. There is a class of workloads whose
+execution can tolerate some degree of error in the result. I would try to extend the idea in this paper to those
+workloads. Examples of such workloads are Machine Learning, Scientific Computing, Signal Processing, etc... and in many
+cases these workloads are parallelizable, which could imply the need for synchronization for some of them. Now,
+supposing we have a critical section, if we have a workload that can tolerate a degree of error, we do not need to roll
+back every misspeculation produced by elation of the lock. If the misspeculation produces the result that does not
+differ from the actual one  by large margin or does not influence the final result significantly, we continue executing
+even though we have misspeculated. This would allow to potentially remove a large number of rollbacks that resulted from
+misspeculation  and would eliminate one of the major overheads of SLE technique.
+    In order to implement this extention, one would need to determine the degree of error introduced by each
+misspeculation (in other words, determine the imporatance of each critical section). One way this can be done is
+have the programmer give hints to the compiler, which would then pass those hints down to architecture. The hint would
+describe to the compiler how "critical" the critical section is, which would allow the compiler to decide whether
+misspeculation on this critical section needs to be rolled back or we can continue execution without rollback. To
+evaluate how well my proposed idea performs, I would simulate the execution and evaluate the speedup obtained while
+staying under the error treshold.
