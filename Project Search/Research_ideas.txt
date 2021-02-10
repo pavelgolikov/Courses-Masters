@@ -18,6 +18,12 @@ training on device?
 
 - Is using smartphone + cloud more energy efficient compared to using desktop or laptop?
 
+- distributed computing on smartphones? When a large workload needs to be computed, it is split data-wise into packets
+that each need to be computed and then sent to mobile phones that are not utilized, which then compute the workload. We
+can even send same packet to multiple phones for redundancy. We could send it to other computers, not only mobile
+phones. We could study when it makes sense to do that for different workloads. When is latency reduced?
+
+========================================================================================================================
 
 Standard Architectures:
 
