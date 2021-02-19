@@ -14,8 +14,6 @@ MAJOR IDEAS:
 - Offloading computations from smartphone to the cloud. When to do it? What is the metric? offloading ML better than
 training on device?
 
-- Combine offloadirg and heterogeneous cores? 
-
 - Is using smartphone + cloud more energy efficient compared to using desktop or laptop?
 
 - distributed computing on smartphones? When a large workload needs to be computed, it is split data-wise into packets
