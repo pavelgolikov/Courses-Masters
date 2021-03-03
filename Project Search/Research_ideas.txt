@@ -21,6 +21,9 @@ that each need to be computed and then sent to mobile phones that are not utiliz
 can even send same packet to multiple phones for redundancy. We could send it to other computers, not only mobile
 phones. We could study when it makes sense to do that for different workloads. When is latency reduced?
 
+- Lookahead for cache coherence protocol that would look at the instructions and not transition from M to S if there
+if another Store close by. What do we do with GetS request though?
+
 ========================================================================================================================
 
 Standard Architectures:

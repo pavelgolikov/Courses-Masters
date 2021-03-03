@@ -102,7 +102,7 @@ Component (IP) coordination:
 
 https://ieeexplore.ieee.org/document/7056029  !!
 Domain knowledge based energy management in handhelds.
-This paper proposes a coordinated multicomponent energy optimization mechanism for handheld devices, where the energy 
+This paper proposes a coordinated multicomponent energy optimization mechanism for handheld devices, where the energy
 profile of different components such as CPU, memory, GPU and IP cores are considered in unison to trigger the 
 appropriate DVFS state by exploiting the application domain knowledge. Specifically, we show that for the important 
 class of frame-based applications, the domain knowledge - frame processing rates, component utilization and available l
@@ -112,7 +112,7 @@ but for a group of applications.
 
 https://dl.acm.org/doi/10.1145/2749469.2750382 !!
 Virtualizing IPs.
-This paper also proposes coordintion of IPs for user-interactive and display based applications for the goal of avoiding
+This paper also proposes coordination of IPs for user-interactive and display based applications for the goal of avoiding
 unnecessary data transfers through memory and avoiding unnecessary CPU involvement in running those applications.
     Basically addresses that same problem of IP device communication, but for interactive applications - same as
 previous paper.
