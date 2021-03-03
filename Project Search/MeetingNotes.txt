@@ -1,0 +1,24 @@
+1. Discuss what I found on the phone.
+    - Really not clear what is going on: a lot of the files return "unimplemented".
+    - So far found: temperature, gpu utilization, image not clear
+
+2. Discuss Development Board and lack of info on it
+    - No manual found
+    - Will have to purchase all components
+    - Likely will only be able to profile CPU, GPU
+
+3. Discuss Email to VJ to talk about the other 2 potential projects.
+    - Talk about our concerns about hitting a wall and not making progress
+    - Is IP co-design project realistic without internship/insider knowledge? From VJ's opinion.
+    - Talk about more likely candidate (BenchMark/hardware optimizations for Android Stack).
+
+
+Paper on JVM in hardware - PicoJava
+https://ieeexplore.ieee.org/abstract/document/592314
+
+Another paper on Java in hardware
+https://ieeexplore.ieee.org/abstract/document/922817
+
+Google Workloads for Consumer Devices:
+Paper proposes using in memory compute to speedup and save energy on mobile
+https://dl.acm.org/doi/10.1145/3296957.3173177
