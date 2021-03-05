@@ -137,3 +137,13 @@ Architecture and open questions papers:
 https://link.springer.com/article/10.1007/s11227-020-03312-z
 Smartphone processor architecture, operations, and functions: current state-of-the-art and future outlook: energy 
 performance trade-off.
+
+Paper on JVM in hardware - PicoJava
+https://ieeexplore.ieee.org/abstract/document/592314
+
+Another paper on Java in hardware
+https://ieeexplore.ieee.org/abstract/document/922817
+
+Google Workloads for Consumer Devices:
+Paper proposes using in memory compute to speedup and save energy on mobile
+https://dl.acm.org/doi/10.1145/3296957.3173177
